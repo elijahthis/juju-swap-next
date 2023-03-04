@@ -1,0 +1,50 @@
+.PriceInfo {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 3.2px;
+	font-size: 12px;
+	line-height: 15px;
+
+	&--true {
+		color: #27ae60;
+
+		.PriceInfo__arrow {
+			background-color: rgba(39, 174, 95, 0.4);
+		}
+	}
+	&--false {
+		color: #eb5757;
+
+		.PriceInfo__arrow {
+			background-color: rgba(235, 87, 87, 0.4);
+		}
+	}
+
+	&__arrow {
+		width: 0.75rem;
+		height: 0.75rem;
+		display: grid;
+		place-items: center;
+		border-radius: 4px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.PriceInfo {
+		gap: 3px;
+		font-size: 10px;
+		line-height: 13px;
+
+		&__arrow {
+			width: 10px;
+			height: 10px;
+			display: grid;
+			place-items: center;
+			border-radius: 4px;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+}

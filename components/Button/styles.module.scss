@@ -1,0 +1,26 @@
+.Button {
+	font-family: "Euclid Circular A";
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 23px;
+	color: #ffffff;
+	padding: 1rem 2rem;
+
+	background: linear-gradient(302.87deg, #26d0ce -18.22%, #1a2980 101.04%);
+	border-radius: 6px;
+	border: 0;
+	cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+	.Button {
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 15px;
+
+		color: #ffffff;
+		padding: 0.5rem 0.75rem;
+
+		border-radius: 4px;
+	}
+}

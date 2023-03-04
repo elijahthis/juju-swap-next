@@ -1,0 +1,86 @@
+.Accordion {
+	text-align: left;
+	&__item {
+		border-bottom: 1px solid #e0e0e0;
+
+		.accord-icon {
+			transition: transform 0.4s;
+		}
+
+		&--open {
+			.accord-icon {
+				transform: rotate(90deg);
+			}
+		}
+
+		&__title {
+			padding: 42px 0;
+			padding-right: 42px;
+			cursor: pointer;
+			font-size: 24px;
+			line-height: 30px;
+			color: #0c0b0e;
+
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		&__body {
+			color: #8e8e93;
+			height: 0;
+			min-height: 0;
+			max-height: 0;
+			overflow: hidden;
+			transition: min-height 0.4s;
+
+			&--open {
+				min-height: 100px;
+				max-height: 1000px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.Accordion {
+		&__item {
+			&__title {
+				font-weight: 400;
+				font-size: 18px;
+				line-height: 23px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.Accordion {
+		&__item {
+			&__title {
+				padding: 2rem 0;
+				padding-right: 1px;
+				font-size: 12px;
+				line-height: 15px;
+			}
+
+			&__body {
+				height: 0;
+				min-height: 0;
+				max-height: 0;
+				overflow: hidden;
+				transition: min-height 0.4s;
+
+				font-weight: 400;
+				font-size: 12px;
+				line-height: 16px;
+
+				&--open {
+					min-height: 100px;
+					max-height: 1000px;
+				}
+			}
+		}
+	}
+}

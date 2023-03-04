@@ -1,0 +1,255 @@
+.OverviewCharts {
+	padding: 32px 10.42vw;
+	padding-bottom: 0;
+	background: url("../../assets/images/Whangaehu-1.svg");
+
+	& > div {
+		max-width: 1140px;
+		margin: 0 auto;
+
+		.OverviewCharts__charts {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(540px, 1fr));
+			gap: 0.75rem;
+
+			img {
+				max-width: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+}
+
+.TopPoolsTable {
+	padding: 32px 10.42vw;
+	padding-bottom: 150px;
+	padding-bottom: 0;
+
+	& > div {
+		max-width: 1140px;
+		margin: 0 auto;
+	}
+
+	&__tables {
+		& > :nth-child(2) {
+			display: none;
+		}
+	}
+}
+
+.TopTokensTable {
+	padding: 32px 10.42vw;
+	padding-bottom: 150px;
+	& > div {
+		max-width: 1140px;
+		margin: 0 auto;
+	}
+}
+
+.TopChartBit {
+	padding: 32px 10.42vw;
+	padding-bottom: 2rem;
+	// display: none;
+	& > div {
+		max-width: 1140px;
+		margin: 0 auto;
+		.TopChartBit__head {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 10px;
+			margin-bottom: 2rem;
+
+			> p {
+				font-weight: 600;
+				font-size: 24px;
+				line-height: 30px;
+				margin-left: 2px;
+			}
+
+			img {
+				width: 2rem;
+				height: 2rem;
+			}
+		}
+
+		.TopChartBit__cards {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+			gap: 1rem;
+			margin-bottom: 1rem;
+
+			img {
+				max-width: 100%;
+				object-fit: cover;
+			}
+		}
+
+		.TopChartBit__cards2 {
+			background: #0c0b0e;
+			box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.04),
+				0px 4px 8px rgba(0, 0, 0, 0.06);
+			border-radius: 20px;
+			padding: 1.5rem;
+
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+			gap: 1rem;
+			margin-bottom: 1rem;
+		}
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.OverviewCharts {
+		padding: 0 2rem;
+		padding-top: 0;
+
+		& > div {
+			.OverviewCharts__charts {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+				gap: 1rem;
+			}
+		}
+	}
+
+	.TopPoolsTable {
+		padding: 2rem;
+		// padding-bottom: 150px;
+		padding-bottom: 0;
+		margin-bottom: 2rem;
+	}
+
+	.TopTokensTable {
+		padding: 2rem;
+		padding-top: 0;
+		padding-bottom: 150px;
+	}
+
+	.TopChartBit {
+		padding: 2rem;
+		padding-top: 0;
+		padding-bottom: 2rem;
+		// display: none;
+		& > div {
+			.TopChartBit__head {
+				gap: 6px;
+				margin-bottom: 1.5rem;
+
+				> p {
+					font-weight: 600;
+					font-size: 12px;
+					line-height: 15px;
+					margin-left: 2px;
+				}
+
+				img {
+					width: 20px;
+					height: 20px;
+				}
+			}
+
+			.TopChartBit__cards {
+				grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+				gap: 1rem;
+				margin-bottom: 1rem;
+			}
+
+			.TopChartBit__cards2 {
+				padding: 1rem;
+				grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+				margin-bottom: 1rem;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.OverviewCharts {
+		padding: 1rem;
+		padding-top: 0;
+		& > div {
+			h4 {
+				font-size: 12px;
+				line-height: 15px;
+				margin-bottom: 0.75rem;
+			}
+			.OverviewCharts__charts {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+				gap: 0.75rem;
+			}
+		}
+	}
+
+	.TopPoolsTable {
+		padding: 1rem;
+		padding-top: 0.5rem;
+
+		& > div {
+			h4 {
+				font-size: 16px;
+				line-height: 20px;
+				margin-bottom: 1.5rem;
+			}
+		}
+
+		&__tables {
+			& > :first-child {
+				display: none;
+			}
+			& > :nth-child(2) {
+				display: block;
+			}
+		}
+	}
+
+	.TopTokensTable {
+		padding: 1rem;
+		padding-top: 0.5rem;
+		& > div {
+			h4 {
+				font-size: 16px;
+				line-height: 20px;
+				margin-bottom: 1.5rem;
+			}
+		}
+	}
+
+	.TopChartBit {
+		padding: 0.75rem 1rem;
+		padding-bottom: 2rem;
+		// display: none;
+		& > div {
+			.TopChartBit__head {
+				gap: 3px;
+				margin-bottom: 1.5rem;
+
+				> p {
+					font-size: 10px;
+					line-height: 13px;
+					margin-left: 3px;
+				}
+
+				img {
+					width: 14px;
+					height: 14px;
+				}
+			}
+
+			.TopChartBit__cards {
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				gap: 0.75rem;
+			}
+
+			.TopChartBit__cards2 {
+				border-radius: 10px;
+				padding: 0.5rem;
+				grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+				gap: 0.5rem;
+				margin-bottom: 0;
+			}
+		}
+	}
+}

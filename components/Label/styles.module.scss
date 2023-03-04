@@ -1,0 +1,25 @@
+.Label {
+	display: block;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 18px;
+	color: #8e8e93;
+	margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+	.Label {
+		font-size: 10px;
+		line-height: 13px;
+		margin-bottom: 8px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.Label {
+		font-size: 10px;
+		line-height: 13px;
+		margin-bottom: 6px;
+	}
+}

@@ -1,0 +1,196 @@
+.PoolCard {
+	padding: 32px 10.42vw;
+	width: 100%;
+	background: url("../../assets/images/Whangaehu-1.svg");
+
+	& > div {
+		max-width: 1140px;
+		margin: 0 auto;
+
+		p {
+			color: #ffffff;
+		}
+
+		.PoolCard__inner {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			padding: 120px;
+
+			.smallCard {
+				width: 461px;
+				background: #1f2832;
+				border-radius: 10px;
+				padding: 1.5rem 0.75rem;
+
+				&__head {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: space-between;
+					margin-bottom: 1.5rem;
+
+					> p {
+						font-weight: 600;
+						font-size: 18px;
+						line-height: 23px;
+						color: #ffffff;
+					}
+					button {
+						padding: 0.5rem 1rem;
+						font-weight: 600;
+						font-size: 18px;
+						line-height: 23px;
+					}
+					svg {
+						cursor: pointer;
+					}
+					.btnWrap {
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						gap: 18px;
+					}
+				}
+
+				&__body {
+					display: grid;
+					grid-template-rows: 1fr;
+					gap: 1rem;
+
+					.loadWrap {
+						padding: 3rem 0;
+						// background: "#0c0b0e",
+						border-radius: 10px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.Transactions {
+	padding: 32px 10.42vw;
+	padding-bottom: 150px;
+	& > div {
+		max-width: 1140px;
+		margin: 0 auto;
+	}
+	.tables {
+		& > :nth-child(2) {
+			display: none;
+		}
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.PoolCard {
+		padding: 2rem;
+		padding-top: 42px;
+
+		& > div {
+			.PoolCard__inner {
+				padding: 74px;
+
+				.smallCard {
+					width: 377px;
+					max-height: 411px;
+					overflow-y: auto;
+					border-radius: 10px;
+					padding: 1rem 0.75rem;
+
+					&__head {
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						justify-content: space-between;
+						margin-bottom: 1.5rem;
+
+						> p {
+							font-weight: 600;
+							font-size: 18px;
+							line-height: 23px;
+							color: #ffffff;
+						}
+						button {
+							padding: 0.5rem 1rem;
+							font-weight: 600;
+							font-size: 18px;
+							line-height: 23px;
+						}
+						svg {
+							cursor: pointer;
+						}
+						.btnWrap {
+							display: flex;
+							flex-direction: row;
+							align-items: center;
+							gap: 18px;
+						}
+					}
+
+					&__body {
+						display: grid;
+						grid-template-rows: 1fr;
+						gap: 1rem;
+					}
+				}
+			}
+		}
+	}
+
+	.Transactions {
+		padding: 2rem;
+		padding-top: 0;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.PoolCard {
+		padding: 1.5rem 1rem;
+		background: transparent;
+		& > div {
+			.PoolCard__inner {
+				padding: 1.5rem 1rem;
+
+				.smallCard {
+					padding: 0;
+					background: transparent;
+
+					&__head {
+						> p {
+							font-size: 12px;
+							line-height: 15px;
+						}
+						button {
+							font-weight: 400;
+							font-size: 12px;
+							line-height: 15px;
+						}
+						svg {
+							width: 1rem;
+							height: 1rem;
+						}
+					}
+				}
+			}
+		}
+	}
+	.Transactions {
+		padding: 0.5rem 1rem;
+		padding-bottom: 50px;
+
+		h4 {
+			margin-bottom: 0.75rem;
+		}
+		.tables {
+			& > :first-child {
+				display: none;
+			}
+			& > :nth-child(2) {
+				display: block;
+			}
+		}
+	}
+}

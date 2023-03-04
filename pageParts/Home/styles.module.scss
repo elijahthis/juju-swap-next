@@ -1,0 +1,557 @@
+.HomePageSection {
+	min-height: 100vh;
+	padding: 22px 10.42vw;
+	padding-top: 148px;
+}
+
+.Hero {
+	background: url("../../assets/images/Whangaehu-1.svg");
+	& > div {
+		max-width: 1140px;
+		margin: 0 auto;
+		padding: 0;
+		& > :first-child {
+			display: grid;
+			grid-template-columns: 48fr 52fr;
+			gap: 0.5rem;
+			justify-content: space-between;
+
+			.bulkk {
+			}
+			img {
+				max-width: 100%;
+				object-fit: cover;
+			}
+			.mobile-hero-img {
+				display: none;
+			}
+		}
+		h1 {
+			background: linear-gradient(302.87deg, #26d0ce -18.22%, #1a2980 101.04%),
+				#0c0b0e;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+			text-fill-color: transparent;
+		}
+
+		p {
+			margin-bottom: 2rem;
+			color: #0c0b0e;
+			// text-align: center;
+		}
+
+		button {
+			padding: 14px;
+		}
+
+		.Hero__analytics {
+			margin-top: 50px;
+			padding: 0 2rem;
+
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-around;
+
+			> div {
+				text-align: center;
+
+				h3 {
+					background: linear-gradient(
+							302.87deg,
+							#26d0ce -18.22%,
+							#1a2980 101.04%
+						),
+						#0c0b0e;
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+					background-clip: text;
+					text-fill-color: transparent;
+				}
+			}
+		}
+	}
+}
+
+.SupportedBlockchains {
+	// background: #0c0b0e;
+	min-height: unset;
+	padding: 100px 10.42vw;
+	& > div {
+		max-width: 1153px;
+		margin: 0 auto;
+		h1 {
+			color: #ffffff;
+			margin-bottom: 1rem;
+		}
+
+		p {
+			color: #8e8e93;
+			margin-bottom: 42px;
+		}
+
+		.blockchainCards {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+			gap: 14px;
+			&__card {
+				background: #1f2832;
+				border-radius: 10px;
+				padding: 20px 24px;
+
+				img {
+					width: 42px;
+					margin-bottom: 12px;
+				}
+				p {
+					color: #ffffff;
+					font-weight: 400;
+					font-size: 24px;
+					line-height: 30px;
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	&__inner {
+		padding: 100px 57px 100px 42px;
+	}
+}
+
+.ExchangeYour {
+	padding-top: 150px;
+	padding-bottom: 150px;
+	background: #ffffff;
+	min-height: unset;
+
+	& > div {
+		& > :first-child {
+			grid-template-columns: 52fr 48fr;
+			align-items: center;
+		}
+		h1 {
+			background: unset;
+			-webkit-background-clip: unset;
+			-webkit-text-fill-color: unset;
+			background-clip: unset;
+			text-fill-color: unset;
+			color: #0c0b0e;
+		}
+
+		p {
+			line-height: 42px;
+			color: #000000;
+		}
+	}
+	.web-img {
+		width: 100%;
+	}
+	.mob-img {
+		display: none;
+	}
+}
+
+.SupportedAssets {
+	& > div {
+		max-width: 1140px;
+		text-align: center;
+		margin: 0 auto;
+		h1 {
+			margin-bottom: 0.75rem;
+		}
+
+		p {
+			color: #8e8e93;
+			margin-bottom: 62px;
+		}
+		& > div {
+			& > :nth-child(2) {
+				display: none;
+			}
+		}
+	}
+}
+
+.HowItWork {
+	& > div {
+		text-align: center;
+		max-width: 1140px;
+		margin: 0 auto;
+
+		h1 {
+			margin-bottom: 0.75rem;
+		}
+
+		> p {
+			color: #8e8e93;
+			margin-bottom: 62px;
+		}
+
+		.stepsList {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(273px, 1fr));
+			gap: 0.5rem;
+
+			&__card {
+				// border: 1px solid black;
+				padding: 42px 27px 44px 24px;
+				background: #ffffff;
+				// box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.04),
+				// 	0px 4px 8px rgba(0, 0, 0, 0.06);
+				border-radius: 10px;
+				transition: all 0.5s;
+
+				svg {
+					display: block;
+					width: 70px;
+					margin-bottom: 1rem;
+					transition: color 0.5s;
+					color: #0c0b0e;
+				}
+
+				&__title {
+					font-weight: 600;
+					font-size: 18px;
+					line-height: 23px;
+					color: #0c0b0e;
+					text-align: left;
+					margin-bottom: 6px;
+					transition: all 0.5s;
+				}
+				&__line {
+					width: 19px;
+					height: 2px;
+					background: #f7931a;
+					border-radius: 4px;
+					margin-bottom: 21px;
+					transition: all 0.5s;
+				}
+				&__body {
+					font-weight: 400;
+					font-size: 16px;
+					line-height: 26px;
+					color: #8e8e93;
+					text-align: left;
+				}
+
+				&:hover {
+					background: #0c0b0e;
+
+					svg {
+						color: #ffffff;
+					}
+
+					.stepsList__card__title {
+						color: #ffffff;
+					}
+					.stepsList__card__line {
+						width: 4rem;
+					}
+				}
+			}
+		}
+	}
+}
+
+.FAQ {
+	& > div {
+		text-align: center;
+		max-width: 1140px;
+		margin: 0 auto;
+		h1 {
+			margin-bottom: 0.75rem;
+		}
+
+		p {
+			color: #8e8e93;
+			margin-bottom: 62px;
+		}
+	}
+	padding-bottom: 100px;
+}
+
+@media screen and (max-width: 1024px) {
+	.HomePageSection {
+		min-height: unset;
+		padding: 22px 1rem;
+	}
+
+	.Hero {
+		padding: 4.5rem 2rem;
+		& > div .bulkk h1 {
+			font-size: 42px;
+			line-height: 53px;
+		}
+	}
+
+	.SupportedBlockchains {
+		&__inner {
+			padding: 42px 1.5rem;
+		}
+
+		& > div {
+			.blockchainCards {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+				gap: 0.75rem;
+
+				&__card {
+					border-radius: 6px;
+					padding: 0.5rem 0.75rem;
+
+					img {
+						width: 24px;
+						margin-bottom: 12px;
+					}
+					p {
+						font-weight: 400;
+						font-size: 14px;
+						line-height: 18px;
+					}
+				}
+			}
+		}
+	}
+
+	.ExchangeYour {
+		& > div {
+			.bulkk h1 {
+				font-size: 32px;
+				line-height: 41px;
+				max-width: 80%;
+			}
+			p {
+				line-height: 34px;
+			}
+		}
+	}
+
+	.SupportedAssets {
+		& > div {
+			p {
+				margin-bottom: 1.5rem;
+			}
+		}
+	}
+
+	.HowItWork {
+		& > div {
+			> p {
+				margin-bottom: 1.5rem;
+			}
+		}
+	}
+
+	.FAQ {
+		& > div {
+			p {
+				margin-bottom: 1.5rem;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.HomePageSection {
+	}
+
+	.Hero {
+		background: url("../../assets/images/Whangaehu-1.svg");
+		padding: 1.5rem 1rem;
+		& > div {
+			& > :first-child {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 0.5rem;
+				justify-content: space-between;
+
+				.bulkk {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					margin-bottom: 2rem;
+
+					h1 {
+						font-size: 24px;
+						line-height: 30px;
+					}
+				}
+				.mobile-hero-img {
+					display: inline-block;
+				}
+				.hero-img {
+					display: none;
+				}
+			}
+
+			h1 {
+				text-align: center;
+			}
+			p {
+				margin-bottom: 1rem;
+				text-align: center;
+			}
+			button {
+				margin: 0 auto;
+				padding: 0.5rem 22px;
+			}
+			img {
+				width: 100%;
+			}
+			.Hero__analytics {
+				justify-content: space-between;
+				align-items: flex-start;
+				> div {
+					text-align: center;
+					max-width: 30%;
+
+					h3 {
+						font-size: 16px;
+						line-height: 20px;
+					}
+					p {
+						font-weight: 400;
+						font-size: 10px;
+						line-height: 13px;
+					}
+				}
+			}
+		}
+	}
+
+	.SupportedBlockchains {
+		background: #0c0b0e;
+		padding: 42px 1rem;
+		min-height: unset;
+
+		&__inner {
+			padding: 0;
+		}
+
+		& > div {
+			.blockchainCards {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+				gap: 0.5rem;
+
+				&__card {
+					border-radius: 6px;
+					padding: 0.5rem 0.75rem;
+
+					img {
+						width: 24px;
+						margin-bottom: 12px;
+					}
+					p {
+						font-weight: 400;
+						font-size: 14px;
+						line-height: 18px;
+					}
+				}
+			}
+			.sup-desc,
+			h1 {
+				text-align: center;
+			}
+		}
+	}
+
+	.ExchangeYour {
+		& > div {
+			h1 {
+				margin-bottom: 2rem;
+			}
+			img {
+				width: 80%;
+				margin-bottom: 1.5rem;
+			}
+			p {
+				line-height: 24px;
+				color: #8e8e93;
+			}
+		}
+
+		.web-img {
+			display: none;
+		}
+		.mob-img {
+			display: unset;
+		}
+	}
+
+	.SupportedAssets {
+		& > div {
+			p {
+				margin-bottom: 0.75rem;
+			}
+
+			& > div {
+				& > :nth-child(1) {
+					display: none;
+				}
+				& > :nth-child(2) {
+					display: block;
+				}
+			}
+		}
+	}
+
+	.HowItWork {
+		& > div {
+			h1 {
+				margin-bottom: 0.5rem;
+			}
+
+			> p {
+				margin-bottom: 0.75rem;
+			}
+			.stepsList {
+				grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+				&__card {
+					padding: 24px 6px 16px 16px;
+					background: #ffffff;
+					box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.04),
+						0px 4px 8px rgba(0, 0, 0, 0.06);
+					border-radius: 10px;
+
+					svg {
+						width: 34px;
+						height: 34px;
+						margin-bottom: 0.75rem;
+					}
+
+					&__title {
+						font-size: 14px;
+						line-height: 18px;
+						margin-bottom: 8px;
+						transition: all 0.5s;
+					}
+					&__line {
+						background: #26d0ce;
+						margin-bottom: 1rem;
+						transition: all 0.5s;
+					}
+					&__body {
+						font-size: 12px;
+						line-height: 20px;
+					}
+				}
+			}
+		}
+	}
+
+	.FAQ {
+		& > div {
+			h1 {
+				margin-bottom: 0.5rem;
+			}
+
+			p {
+				margin-bottom: 0.75rem;
+			}
+		}
+	}
+}

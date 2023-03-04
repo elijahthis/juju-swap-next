@@ -1,0 +1,146 @@
+.Footer {
+	padding: 22px 10.42vw;
+	background: #0c0b0e;
+	color: #ffffff;
+	margin-top: auto;
+
+	& > div {
+		max-width: 1140px;
+		margin: 0 auto;
+
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		height: 450px;
+
+		& > svg {
+			color: #ffffff;
+		}
+
+		.Footer__routes {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 42px;
+			&__routeItem {
+				list-style-type: none;
+				a {
+					color: #8e8e93;
+					text-decoration: none;
+				}
+
+				&:hover {
+					text-decoration: underline;
+				}
+
+				&--active {
+					a {
+						text-decoration: underline;
+						color: #32c1cc;
+					}
+				}
+			}
+		}
+		.socialLinks {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 1rem;
+
+			& > div {
+				width: 48px;
+				height: 48px;
+				background: #8e8e93;
+				border-radius: 50%;
+				display: grid;
+				place-items: center;
+
+				svg {
+					width: 26px;
+					height: 26px;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.Footer {
+		height: 236px;
+		padding: 22px 2rem;
+
+		& > div {
+			gap: 1rem;
+			height: 100%;
+			& > svg {
+				color: #ffffff;
+				width: 78px;
+				height: 20px;
+			}
+
+			.Footer__routes {
+				gap: 1rem;
+				&__routeItem {
+					font-weight: 400;
+					font-size: 14px;
+					line-height: 18px;
+				}
+			}
+			.socialLinks {
+				gap: 0.5rem;
+
+				& > div {
+					width: 36px;
+					height: 36px;
+					cursor: pointer;
+
+					svg {
+						width: 20px;
+						height: 20px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.Footer {
+		height: 200px;
+		padding: 2rem 1.5rem;
+
+		& > div {
+			flex-direction: column;
+			gap: 24px;
+			height: unset;
+			.Footer__routes {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+				margin-top: 0.5rem;
+				&__routeItem {
+					font-weight: 400;
+					font-size: 12px;
+					line-height: 15px;
+				}
+			}
+
+			.socialLinks {
+				gap: 0.5rem;
+
+				& > div {
+					width: 36px;
+					height: 36px;
+
+					svg {
+						width: 20px;
+						height: 20px;
+					}
+				}
+			}
+		}
+	}
+}

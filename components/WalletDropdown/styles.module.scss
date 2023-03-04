@@ -1,0 +1,80 @@
+.WalletDropdown {
+	background: #1f2832;
+	border-radius: 10px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 18px;
+	color: #ffffff;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.75rem;
+	justify-content: space-between;
+	height: 70px;
+	padding: 12px 24px;
+
+	&__label {
+		font-style: normal;
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 15px;
+		color: #8e8e93;
+		margin-bottom: 6px;
+	}
+
+	&__wallet {
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 23px;
+		color: #ffffff;
+	}
+
+	.chevron {
+		width: 20px;
+		height: 20px;
+		background-color: #4c535b;
+		border-radius: 50%;
+		display: grid;
+		place-items: center;
+		cursor: pointer;
+		svg {
+			width: 12px;
+			height: 12px;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.WalletDropdown {
+		border-radius: 6px;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 18px;
+
+		gap: 0.75rem;
+		height: 50px;
+		padding: 6px 12px;
+
+		&__label {
+			font-size: 10px;
+			line-height: 13px;
+			margin-bottom: 2px;
+		}
+
+		&__wallet {
+			font-size: 18px;
+			line-height: 23px;
+		}
+
+		.chevron {
+			width: 14px;
+			height: 14px;
+
+			svg {
+				width: 8px;
+				height: 8px;
+			}
+		}
+	}
+}

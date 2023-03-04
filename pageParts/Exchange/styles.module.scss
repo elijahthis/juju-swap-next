@@ -1,0 +1,204 @@
+.ExchangeCard {
+	padding: 42px 10.42vw;
+	background: url("../../assets/images/Whangaehu-1.svg");
+
+	& > div {
+		max-width: 1140px;
+		margin: 0 auto;
+		.ExchangeCard__inner {
+			padding: 76px 96px;
+			color: #8e8e93;
+			display: grid;
+			grid-template-columns: 177px 1fr;
+			gap: 68px;
+
+			form {
+				max-width: 460px;
+				display: flex;
+				flex-direction: column;
+				align-items: stretch;
+				gap: 26px;
+
+				button[type="submit"] {
+					width: 100%;
+					margin-top: 10.5px;
+					padding: 1.5rem 2rem;
+				}
+
+				.drop-Price {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					gap: 0.5rem;
+					justify-content: space-between;
+					margin-bottom: 0.5rem;
+				}
+
+				.warning {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					gap: 14px;
+					* {
+						color: #8e8e93;
+						font-style: normal;
+						font-weight: 400;
+						font-size: 12px;
+						line-height: 15px;
+					}
+					svg {
+						width: 20px;
+						height: 20px;
+					}
+				}
+			}
+		}
+	}
+
+	.cryptoOption {
+		display: grid;
+		grid-template-columns: 18px 1fr;
+		align-items: center;
+		gap: 0.5rem;
+
+		img {
+			height: 18px;
+			width: 18px;
+			border-radius: 50%;
+		}
+	}
+}
+
+.Transactions {
+	padding: 32px 10.42vw;
+	& > div {
+		max-width: 1140px;
+		margin: 0 auto;
+	}
+	.tables {
+		& > :first-child {
+			display: block;
+		}
+		& > :nth-child(2) {
+			display: none;
+		}
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.ExchangeCard {
+		padding: 2rem;
+		padding-top: 42px;
+
+		& > div {
+			.ExchangeCard__inner {
+				padding: 76px 96px;
+				padding-left: 52px;
+				display: grid;
+				grid-template-columns: 133px 1fr;
+				gap: 45px;
+
+				form {
+					max-width: 71%;
+					gap: 17.5px;
+
+					button[type="submit"] {
+						width: 100%;
+						margin-top: 0;
+						padding: 1rem 2rem;
+
+						font-weight: 400;
+						font-size: 16px;
+						line-height: 20px;
+					}
+
+					.drop-Price {
+						gap: 0.5rem;
+						margin-bottom: 0.5rem;
+					}
+
+					.warning {
+						gap: 0.5rem;
+						* {
+							font-weight: 400;
+							font-size: 10px;
+							line-height: 13px;
+						}
+						svg {
+							width: 15px;
+							height: 15px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.Transactions {
+		padding: 2rem;
+		padding-top: 0;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.ExchangeCard {
+		padding: 1.5rem 1rem;
+
+		& > div {
+			.ExchangeCard__inner {
+				padding: 1.5rem 1rem;
+				display: grid;
+				grid-template-rows: 24px 1fr;
+				grid-template-columns: unset;
+				gap: 1rem;
+
+				form {
+					max-width: 100%;
+					gap: 17.5px;
+
+					button[type="submit"] {
+						width: 100%;
+						margin-top: 0;
+						padding: 1rem;
+						font-size: 16px;
+						line-height: 20px;
+					}
+
+					.drop-Price {
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						gap: 0.5rem;
+						justify-content: space-between;
+						margin-bottom: 0.5rem;
+					}
+
+					.warning {
+						gap: 0.5rem;
+						* {
+							font-size: 10px;
+							line-height: 13px;
+						}
+						svg {
+							width: 1rem;
+							height: 1rem;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.Transactions {
+		padding: 0.5rem 1rem;
+		padding-bottom: 50px;
+		.tables {
+			& > :first-child {
+				display: none;
+			}
+			& > :nth-child(2) {
+				display: block;
+			}
+		}
+	}
+}

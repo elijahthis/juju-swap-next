@@ -1,0 +1,42 @@
+.ComingSoon {
+	text-align: center;
+	padding-top: 6rem;
+	background: #0c0b0e;
+	color: #ffffff;
+	height: calc(100vh - 99px);
+
+	h1 {
+		margin-bottom: 1rem;
+	}
+	p {
+		color: #ffffff;
+	}
+
+	&__buttons {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		margin-top: 2rem;
+
+		& > :first-child {
+			background: transparent;
+			border: 3px solid #ffffff;
+			padding: 14.5px 30.5px;
+			// padding: 7.5px 10.5px;
+		}
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.ComingSoon {
+		&__buttons {
+			& > :first-child {
+				background: transparent;
+				border: 1px solid #ffffff;
+				padding: 7.5px 11.5px;
+			}
+		}
+	}
+}

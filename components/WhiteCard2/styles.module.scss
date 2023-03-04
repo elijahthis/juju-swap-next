@@ -1,0 +1,96 @@
+.WhiteCard2 {
+	background: #f2f2f2;
+	border-radius: 10px;
+	padding: 14px 24px;
+
+	&__head {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 19px;
+	}
+
+	&__tag {
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 15px;
+		color: #8e8e93;
+		background: #0c0b0e;
+		border-radius: 30px;
+		padding: 6px 12px;
+	}
+
+	&__change {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 18px;
+
+		&--negative {
+			color: #eb5757;
+		}
+		&--positive {
+			color: #27ae60;
+		}
+	}
+
+	&__amount {
+		font-weight: 400;
+		font-size: 24px;
+		line-height: 30px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.WhiteCard2 {
+		border-radius: 6px;
+		padding: 1rem;
+		padding-left: 1.5rem;
+
+		&__head {
+			margin-bottom: 1rem;
+		}
+
+		&__tag {
+			font-size: 8px;
+			line-height: 10px;
+			border-radius: 30px;
+			padding: 0.25rem 0.5rem;
+		}
+
+		&__change {
+			font-size: 14px;
+			line-height: 18px;
+		}
+
+		&__amount {
+			font-size: 18px;
+			line-height: 23px;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.WhiteCard2 {
+		border-radius: 6px;
+		padding: 0.5rem;
+
+		&__head {
+			margin-bottom: 0.75rem;
+		}
+		&__tag {
+			font-size: 8px;
+			line-height: 10px;
+			border-radius: 20px;
+			padding: 0.25rem 6px;
+		}
+		&__change {
+			font-size: 10px;
+			line-height: 13px;
+		}
+		&__amount {
+			font-size: 16px;
+			line-height: 20px;
+		}
+	}
+}

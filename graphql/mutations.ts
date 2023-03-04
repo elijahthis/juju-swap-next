@@ -1,0 +1,61 @@
+import { gql } from "@apollo/client";
+
+export const TRANSFER_FIAT = gql`
+	mutation Mutation(
+		$accountNumber: String!
+		$bankName: String!
+		$amount: String!
+	) {
+		transferFiatToCustomer(
+			account_number: $accountNumber
+			bank_name: $bankName
+			amount: $amount
+		)
+	}
+`;
+
+export const ADD_USER = gql`
+	mutation AddUser($signature: String!, $address: String!) {
+		addUser(signature: $signature, address: $address) {
+			... on User {
+				id
+				reference
+				signature
+				eoa
+				level
+				kyc {
+					id
+					user {
+						id
+						eoa
+						signature
+						level
+						createdAt
+						reference
+					}
+					status
+					createdAt
+					updatedAt
+					identificationFirstName
+					identificationMiddleName
+					identificationLastName
+					identificationNumber
+					identificationType
+					identificationImage
+				}
+				createdAt
+				accountDetails {
+					id
+					accountName
+					accountNumber
+					bank {
+						id
+						name
+						code
+					}
+					default
+				}
+			}
+		}
+	}
+`;

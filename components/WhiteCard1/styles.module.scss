@@ -1,0 +1,155 @@
+.WhiteCard1 {
+	background: #ffffff;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.06);
+	border-radius: 20px;
+	padding: 24px 36px;
+	padding-bottom: 27px;
+
+	&__asset {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 7px;
+		margin-bottom: 0.75rem;
+
+		img {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+
+		p {
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 18px;
+			color: #8e8e93;
+		}
+	}
+
+	&__amount {
+		font-weight: 400;
+		font-size: 24px;
+		line-height: 30px;
+		color: #0c0b0e;
+		margin-bottom: 15px;
+	}
+
+	&__rateView {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		p {
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 18px;
+		}
+		.rate {
+			color: #8e8e93;
+		}
+		.view {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 9px;
+			cursor: pointer;
+			text-decoration: underline;
+			text-decoration-color: #26d0ce;
+			* {
+				color: #26d0ce;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.WhiteCard1 {
+		border-radius: 10px;
+		padding: 1rem;
+		padding-right: 1.5rem;
+		padding-bottom: 1.5rem;
+
+		&__asset {
+			gap: 6px;
+			margin-bottom: 0.5rem;
+
+			img {
+				width: 18px;
+				height: 18px;
+			}
+
+			p {
+				font-size: 10px;
+				line-height: 13px;
+			}
+		}
+
+		&__amount {
+			font-size: 18px;
+			line-height: 23px;
+			margin-bottom: 0.75rem;
+		}
+
+		&__rateView {
+			p {
+				font-weight: 400;
+				font-size: 10px;
+				line-height: 13px;
+			}
+			.rate {
+				color: #8e8e93;
+			}
+			.view {
+				gap: 7px;
+
+				svg {
+					width: 11px;
+					height: 11px;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.WhiteCard1 {
+		border-radius: 10px;
+		padding: 1rem;
+		padding-bottom: 1.5rem;
+
+		&__asset {
+			gap: 6px;
+			margin-bottom: 0.5rem;
+
+			img {
+				width: 18px;
+				height: 18px;
+			}
+
+			p {
+				font-size: 10px;
+				line-height: 13px;
+			}
+		}
+		&__amount {
+			font-size: 18px;
+			line-height: 23px;
+			margin-bottom: 0.75rem;
+		}
+		&__rateView {
+			p {
+				font-size: 10px;
+				line-height: 13px;
+			}
+
+			.view {
+				gap: 7px;
+
+				svg {
+					width: 11px;
+					height: 11px;
+				}
+			}
+		}
+	}
+}

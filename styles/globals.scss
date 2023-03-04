@@ -1,0 +1,155 @@
+@font-face {
+	font-family: "Euclid Circular A";
+	src: url(/fonts/Euclid\ Circular\ A\ Regular.ttf);
+	font-style: normal;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Euclid Circular A";
+	src: url(/fonts/Euclid\ Circular\ A\ Bold.ttf);
+	font-style: normal;
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "Euclid Circular A";
+	src: url(/fonts/Euclid\ Circular\ A\ SemiBold.ttf);
+	font-style: normal;
+	font-weight: 600;
+}
+
+body {
+	margin: 0;
+	font-family: "Euclid Circular A", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+
+//App.scss
+
+.Toastify {
+	font-family: "Euclid Circular A" !important;
+}
+.Toastify__toast--error {
+	border: 0;
+	/* border-radius: 50px !important; */
+	background: #a10f18 !important;
+	color: #ffffff !important;
+	font-family: "Euclid Circular A" !important;
+}
+.Toastify__toast--error svg > path {
+	fill: #ffffff !important;
+}
+
+.Toastify__toast--success {
+	border: 0;
+	/* border-radius: 50px !important; */
+	background: #169d53 !important;
+	color: #ffffff !important;
+	font-family: "Euclid Circular A" !important;
+}
+.Toastify__toast--success svg > path {
+	fill: #ffffff !important;
+}
+
+.App {
+	padding-top: 100px;
+	// min-height: 100vh;
+
+	& > main {
+		min-height: calc(100vh - 99px);
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+	}
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+h1 {
+	font-weight: 600;
+	font-size: 62px;
+	line-height: 79px;
+	margin-bottom: 24px;
+}
+
+h3 {
+	font-weight: 600;
+	font-size: 32px;
+	line-height: 41px;
+}
+
+h4 {
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 30px;
+	color: #0c0b0e;
+	margin-bottom: 24px;
+}
+
+p {
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 36px;
+	color: #0c0b0e;
+}
+
+@media screen and (max-width: 1024px) {
+	.App {
+		& > main {
+			min-height: calc(100vh - 88px);
+		}
+	}
+
+	h1 {
+		font-weight: 600;
+		font-size: 32px;
+		line-height: 41px;
+		margin-bottom: 1rem;
+	}
+
+	h4 {
+		font-weight: 600;
+		font-size: 18px;
+		line-height: 23px;
+		margin-bottom: 1rem;
+	}
+
+	p {
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 23px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.App {
+		padding-top: 75px;
+
+		& > main {
+			min-height: calc(100vh - 76px);
+		}
+	}
+
+	h1 {
+		font-weight: 600;
+		font-size: 24px;
+		line-height: 30px;
+		margin-bottom: 0.5rem;
+	}
+	p {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 24px;
+	}
+}

@@ -1,0 +1,972 @@
+.PoolDropdown {
+	background: #0c0b0e;
+	border-radius: 10px;
+	padding: 0.75rem 1.5rem;
+	display: grid;
+	grid-template-columns: 1fr 1rem;
+	align-items: center;
+	position: relative;
+
+	.icons {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		gap: 0.25rem;
+		img {
+			width: 1rem;
+			height: 1rem;
+		}
+	}
+
+	.main-assets-line {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.25rem;
+
+		& > div {
+			display: grid;
+			grid-template-columns: 36px 1fr;
+			gap: 0.75rem;
+			align-items: center;
+		}
+	}
+
+	.assets {
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 23px;
+		color: #ffffff;
+	}
+
+	.price {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 18px;
+		color: #8e8e93;
+	}
+
+	.chevron {
+		width: 14px;
+		height: 14px;
+		background-color: rgba(255, 255, 255, 0.2);
+		display: grid;
+		place-items: center;
+		border-radius: 50%;
+		cursor: pointer;
+
+		svg {
+			width: 14px;
+			height: 14px;
+		}
+	}
+}
+
+.PoolDropdownModal {
+	background: #0c0b0e;
+	border-radius: 10px;
+	width: 100%;
+	min-width: 437px;
+
+	min-height: 325px;
+	max-height: 800px;
+
+	& > div {
+		padding: 12px 24px;
+	}
+
+	&__asset {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 0.75rem;
+
+		.pooled {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 9px;
+
+			p {
+				font-weight: 400;
+				font-size: 18px;
+				line-height: 23px;
+				color: #ffffff;
+			}
+		}
+
+		> p {
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 18px;
+			color: #8e8e93;
+		}
+
+		img {
+			width: 1rem;
+			height: 1rem;
+		}
+	}
+
+	&__info {
+		margin-top: 17px;
+		.twoPart-info {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+			margin-bottom: 0.75rem;
+
+			span {
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 18px;
+				color: #8e8e93;
+			}
+
+			.wallet-copy {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 6px;
+				padding: 7px 14px;
+				background: #1f2832;
+				border-radius: 6px;
+				cursor: pointer;
+				span {
+					color: #ffffff;
+				}
+			}
+		}
+		.addrDiv {
+			margin-bottom: 9px;
+		}
+		.check-stat {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 0.5rem;
+			color: #ffffff;
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 15px;
+			margin-bottom: 1.5rem;
+			cursor: pointer;
+			text-decoration: underline;
+
+			svg {
+				color: #32c1cc;
+			}
+		}
+		.btnWrap {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+
+			& > button {
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 18px;
+				color: #32c1cc;
+				padding: 0.75rem 1.5rem;
+				background-color: transparent;
+				border-radius: 6px;
+				cursor: pointer;
+			}
+
+			button:first-of-type {
+				border: 1px solid #32c1cc;
+				transition: all 0.4s;
+				&:hover {
+					background-color: #32c1cc;
+					color: #ffffff;
+				}
+			}
+			button:last-of-type {
+				padding: 0.75rem 0;
+				border: 0;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 9.5px;
+			}
+		}
+	}
+}
+
+.AddLiquidityModal {
+	color: #8e8e93;
+	background: #0c0b0e;
+	border-radius: 10px;
+	width: 492px;
+	height: 534px;
+	padding: 1rem;
+
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 1rem;
+
+	p {
+		color: #8e8e93;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 18px;
+	}
+
+	&__top {
+		background: #1f2832;
+		border-radius: 10px;
+		padding: 1.5rem 0.75rem 1rem 0.75rem;
+
+		.token_tags {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 0.75rem;
+
+			.token {
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 18px;
+				color: #605d5d;
+			}
+			.tags {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 0.75rem;
+
+				span {
+					font-weight: 400;
+					font-size: 12px;
+					line-height: 15px;
+					color: #8e8e93;
+				}
+				.max {
+					padding: 3px 6px;
+					background: #8e8e93;
+					border-radius: 4px;
+					color: #1f2832;
+				}
+			}
+		}
+
+		.select_token {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.75rem;
+			background: #0c0b0e;
+			border-radius: 10px;
+			padding: 0.75rem;
+
+			& > div {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			& > :first-child {
+				span {
+					font-size: 18px;
+					line-height: 23px;
+					color: #ffffff;
+				}
+				.cryptoOption {
+					display: grid;
+					grid-template-columns: 18px 1fr;
+					align-items: center;
+					gap: 0.5rem;
+					font-size: 18px;
+					line-height: 23px;
+					color: #ffffff;
+
+					img {
+						height: 18px;
+						width: 18px;
+						border-radius: 50%;
+					}
+				}
+			}
+
+			& > :last-child {
+				span {
+					font-size: 14px;
+					line-height: 18px;
+				}
+			}
+
+			.input {
+				background: transparent;
+				border: 0;
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 18px;
+				color: #ffffff;
+				font-family: "Euclid Circular A";
+				text-align: right;
+				padding: 0.25rem;
+				border-radius: 0.25rem;
+
+				&:focus {
+					outline: 1px solid #c4c4c4;
+				}
+			}
+		}
+	}
+
+	&__middle {
+		padding: 0.75rem;
+		background: #1f2832;
+		border-radius: 10px;
+
+		.black_bar {
+			padding: 6px;
+			background: #0c0b0e;
+			border-radius: 4px;
+			width: max-content;
+			margin-bottom: 0.75rem;
+
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 9.5px;
+
+			& > div {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 1rem;
+
+				span {
+					font-size: 12px;
+					line-height: 15px;
+				}
+			}
+		}
+	}
+
+	&__btn {
+		margin-top: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+
+		button {
+			padding: 18px;
+		}
+	}
+}
+
+.RemoveLiquidityModal {
+	color: #8e8e93;
+	background: #0c0b0e;
+	border-radius: 10px;
+	width: 437px;
+	min-height: 474px;
+	padding: 2rem 1.5rem;
+
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	// gap: 1rem;
+
+	p {
+		color: #8e8e93;
+		font-size: 12px;
+		line-height: 15px;
+		font-weight: 400;
+	}
+
+	.title {
+		font-weight: 600;
+		font-size: 18px;
+		line-height: 23px;
+		color: #ffffff;
+		margin-bottom: 0.75rem;
+	}
+
+	&__top {
+		margin-bottom: 1.5rem;
+	}
+
+	&__outlineBox {
+		padding: 0.75rem 1rem;
+		background: transparent;
+		border: 1px solid #605d5d;
+		border-radius: 10px;
+		margin-bottom: 1rem;
+
+		.percent_amount {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 1.5rem;
+
+			.percent {
+				font-weight: 600;
+				font-size: 32px;
+				line-height: 41px;
+				color: #ffffff;
+			}
+		}
+
+		.slideDiv {
+			margin-bottom: 1rem;
+		}
+
+		.percent {
+			font-weight: 600;
+			font-size: 32px;
+			line-height: 41px;
+			color: #ffffff;
+		}
+
+		.tags {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 0.75rem;
+
+			.tag {
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 18px;
+				color: #ffffff;
+				padding: 6px;
+				background: #1f2832;
+				border-radius: 6px;
+				cursor: pointer;
+
+				&--active {
+					background: #ffffff;
+					color: #1f2832;
+				}
+			}
+		}
+	}
+
+	.subTitle {
+		margin-bottom: 0.75rem;
+	}
+
+	&__fillBox {
+		padding: 10px 1rem;
+		background: #1f2832;
+		border-radius: 10px;
+
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 6px;
+		margin-bottom: 1.5rem;
+
+		& > div {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 0.5rem;
+			justify-content: space-between;
+
+			.assett {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 0.5rem;
+
+				img {
+					width: 1rem;
+					height: 1rem;
+				}
+			}
+		}
+
+		span {
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 18px;
+			color: #ffffff;
+		}
+	}
+
+	&__btn {
+		margin-top: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+
+		button {
+			padding: 18px;
+		}
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.PoolDropdown {
+		border-radius: 6px;
+		padding: 9px 1rem;
+		grid-template-columns: 1fr 0.75rem;
+
+		.icons {
+			img {
+				width: 14px;
+				height: 14px;
+			}
+		}
+
+		.main-assets-line {
+			& > div {
+				display: grid;
+				grid-template-columns: 32px 1fr;
+				gap: 10px;
+				align-items: center;
+			}
+		}
+
+		.chevron {
+			width: 11px;
+			height: 11px;
+
+			svg {
+				width: 11px;
+				height: 11px;
+			}
+		}
+
+		.assets {
+			font-size: 14px;
+			line-height: 18px;
+		}
+		.price {
+			font-size: 12px;
+			line-height: 15px;
+		}
+	}
+
+	.AddLiquidityModal {
+		border-radius: 10px;
+		width: 400px;
+		height: 434px;
+		padding: 1rem 0.75rem;
+
+		p {
+			font-weight: 400;
+			font-size: 10px;
+			line-height: 13px;
+		}
+
+		&__top {
+			border-radius: 6px;
+			padding: 1rem 0.75rem 1rem 0.75rem;
+
+			.token_tags {
+				margin-bottom: 10px;
+
+				.token {
+					font-size: 10px;
+					line-height: 13px;
+				}
+				.tags {
+					gap: 6px;
+
+					span {
+						font-size: 10px;
+						line-height: 13px;
+					}
+					.max {
+						padding: 2px 64x;
+						border-radius: 3.25px;
+					}
+				}
+			}
+
+			.select_token {
+				gap: 6px;
+				border-radius: 6px;
+				padding: 0.75rem;
+
+				& > :first-child {
+					span {
+						font-size: 14px;
+						line-height: 18px;
+					}
+					.cryptoOption {
+						grid-template-columns: 12px 1fr;
+						gap: 0.25rem;
+						font-size: 14px;
+						line-height: 18px;
+
+						img {
+							height: 12px;
+							width: 12px;
+						}
+					}
+				}
+
+				& > :last-child {
+					span {
+						font-size: 14px;
+						line-height: 18px;
+					}
+				}
+			}
+		}
+
+		&__middle {
+			border-radius: 6px;
+
+			.black_bar {
+				padding: 4px 5px;
+				margin-bottom: 0.5rem;
+
+				gap: 8.64px;
+
+				& > div {
+					gap: 10.34px;
+
+					span {
+						font-size: 10px;
+						line-height: 13px;
+					}
+				}
+			}
+		}
+
+		&__btn {
+			margin-top: auto;
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+
+			button {
+				padding: 20px;
+				font-size: 18px;
+				line-height: 23px;
+			}
+		}
+	}
+
+	.RemoveLiquidityModal {
+		width: 400px;
+
+		&__btn {
+			button {
+				padding: 20px;
+				font-size: 18px;
+				line-height: 23px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.PoolDropdown {
+		background: #1f2832;
+		border-radius: 6px;
+		padding: 0.75rem 1rem;
+		grid-template-columns: 1fr 0.75rem;
+
+		.icons {
+			img {
+				width: 0.75rem;
+				height: 0.75rem;
+			}
+		}
+		.main-assets-line {
+			gap: 4.5px;
+
+			& > div {
+				display: grid;
+				grid-template-columns: 28px 1fr;
+				gap: 6px;
+				align-items: center;
+			}
+		}
+
+		.assets {
+			font-size: 10px;
+			line-height: 13px;
+		}
+
+		.price {
+			font-size: 8px;
+			line-height: 10px;
+		}
+	}
+
+	.PoolDropdownModal {
+		border-radius: 6px;
+		width: 100%;
+		min-width: 100%;
+		min-height: unset;
+
+		& > div {
+			padding: 12px 1rem;
+		}
+
+		&__asset {
+			margin-bottom: 0.5rem;
+
+			.pooled {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 6px;
+
+				p {
+					font-size: 10px;
+					line-height: 13px;
+				}
+			}
+
+			> p {
+				font-weight: 400;
+				font-size: 8px;
+				line-height: 10px;
+			}
+
+			img {
+				width: 14px;
+				height: 14px;
+			}
+		}
+
+		&__info {
+			margin-top: 14px;
+			.twoPart-info {
+				gap: 1rem;
+				margin-bottom: 0.5rem;
+
+				span {
+					font-size: 8px;
+					line-height: 10px;
+				}
+
+				.wallet-copy {
+					gap: 6px;
+					padding: 6px 12px;
+					border-radius: 4px;
+					svg {
+						width: 12px;
+						height: 12px;
+					}
+				}
+			}
+			.addrDiv {
+				margin-bottom: 8px;
+			}
+			.check-stat {
+				gap: 0.25rem;
+				font-size: 7px;
+				line-height: 10px;
+				margin-bottom: 1rem;
+				cursor: pointer;
+				text-decoration: underline;
+			}
+
+			.btnWrap {
+				& > button {
+					font-size: 8px;
+					line-height: 10px;
+					padding: 0.5rem 1rem;
+					border-radius: 4px;
+				}
+
+				button:last-of-type {
+					padding: 0.5rem 0;
+					border: 0;
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					gap: 8px;
+				}
+			}
+		}
+	}
+
+	.AddLiquidityModal {
+		border-radius: 10px;
+		width: 100%;
+		max-width: 340px;
+		height: 369px;
+		padding: 0.75rem;
+
+		p {
+			font-weight: 400;
+			font-size: 8px;
+			line-height: 10px;
+		}
+
+		&__top {
+			border-radius: 4px;
+			padding: 0.75rem;
+
+			.token_tags {
+				margin-bottom: 11px;
+
+				.token {
+					font-size: 8px;
+					line-height: 10px;
+				}
+				.tags {
+					gap: 4px;
+
+					span {
+						font-size: 8px;
+						line-height: 10px;
+					}
+					.max {
+						padding: 2px 4px;
+						border-radius: 3.25px;
+					}
+				}
+			}
+
+			.select_token {
+				gap: 8px;
+				border-radius: 4px;
+				padding: 0.5rem;
+
+				& > :first-child {
+					span {
+						font-size: 12px;
+						line-height: 15px;
+					}
+					.cryptoOption {
+						grid-template-columns: 10px 1fr;
+						gap: 0.25rem;
+						font-size: 12px;
+						line-height: 15px;
+
+						img {
+							height: 10px;
+							width: 10px;
+						}
+					}
+				}
+
+				& > :last-child {
+					span {
+						font-size: 10px;
+						line-height: 13px;
+					}
+				}
+			}
+		}
+
+		&__middle {
+			border-radius: 4px;
+			padding: 10px 12px;
+
+			.black_bar {
+				padding: 4px 5px;
+				margin-bottom: 0.5rem;
+
+				gap: 5px;
+
+				& > div {
+					gap: 0.5rem;
+
+					span {
+						font-size: 8px;
+						line-height: 10px;
+					}
+				}
+			}
+		}
+
+		&__btn {
+			button {
+				padding: 1rem;
+				font-size: 14px;
+				line-height: 18px;
+			}
+		}
+	}
+
+	.RemoveLiquidityModal {
+		width: 340px;
+		min-height: 472px;
+		padding: 1.5rem 1rem;
+
+		p {
+			font-size: 10px;
+			line-height: 13px;
+		}
+
+		.title {
+			font-size: 14px;
+			line-height: 18px;
+			margin-bottom: 0.75rem;
+		}
+
+		&__top {
+			margin-bottom: 27px;
+		}
+
+		&__outlineBox {
+			margin-bottom: 1.5rem;
+
+			.percent_amount {
+				margin-bottom: 0.4rem;
+				.percent {
+					font-size: 24px;
+					line-height: 30px;
+				}
+			}
+
+			.slideDiv {
+				margin-bottom: 0.4rem;
+			}
+
+			.percent {
+				font-weight: 600;
+				font-size: 32px;
+				line-height: 41px;
+				color: #ffffff;
+			}
+
+			.tags {
+				gap: 0.5rem;
+
+				span {
+					font-size: 10px;
+					line-height: 13px;
+					border-radius: 4px;
+				}
+			}
+		}
+
+		.subTitle {
+			margin-bottom: 11px;
+		}
+
+		&__fillBox {
+			padding: 0.75rem 1rem;
+			gap: 0.5rem;
+			margin-bottom: 2rem;
+
+			span {
+				font-size: 10px;
+				line-height: 13px;
+			}
+		}
+
+		&__btn {
+			button {
+				padding: 1rem;
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 18px;
+				border-radius: 10px;
+			}
+		}
+	}
+}
