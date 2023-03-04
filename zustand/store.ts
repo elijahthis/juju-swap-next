@@ -11,4 +11,8 @@ export const useJujuStore = create((set: any) => ({
 	marketData: [],
 	updateMarketData: (values: any) =>
 		set((state: any) => ({ marketData: values })),
+
+	rainbowKey: 1234,
+	updateRainbowKey: (value: number) =>
+		set((state: any) => ({ rainbowKey: value })),
 }));

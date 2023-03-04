@@ -47,10 +47,15 @@ const wagmiClient = createClient({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+	const rainbowKey = useJujuStore((state: any) => state.rainbowKey);
+
 	return (
 		<ApolloProvider client={apolloClient}>
 			<WagmiConfig client={wagmiClient}>
-				<RainbowKitProvider chains={chains}>
+				<RainbowKitProvider
+					chains={chains}
+					 key={rainbowKey}
+				>
 					<div className="App">
 						<Header />
 						<Component {...pageProps} />

@@ -9,6 +9,7 @@ import { useAccount } from "wagmi";
 import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { GET_MESSAGE, VERIFY_SIGNATURE } from "../../graphql/queries";
 import { useSignMessage } from "wagmi";
+import { disconnect } from "@wagmi/core";
 import { ADD_USER } from "../../graphql/mutations";
 import { useJujuStore } from "../../zustand/store";
 import { toast } from "react-toastify";
@@ -31,6 +32,8 @@ const Header = () => {
 
 	const userData = useJujuStore((state: any) => state.userData);
 	const updateUserData = useJujuStore((state: any) => state.updateUserData);
+	const rainbowKey = useJujuStore((state: any) => state.rainbowKey);
+	const updateRainbowKey = useJujuStore((state: any) => state.updateRainbowKey);
 
 	const { address } = useAccount();
 
@@ -92,7 +95,15 @@ const Header = () => {
 		onError(err) {
 			console.log("err", err);
 			toast.error(err.message);
-			//disconnect wallet here
+
+			/*
+			Disconnect wallet here:
+			note that I had to reset the rainbowkit key to dismiss the connect modal. Weird rainbowKit bug
+			Ref: https://github.com/rainbow-me/rainbowkit/issues/686#issuecomment-1295798813
+			*/
+			disconnect().then(() => {
+				updateRainbowKey(new Date().getTime());
+			});
 		},
 	});
 

@@ -56,7 +56,7 @@ export const Hero = () => {
 							className={styles["hero-img"]}
 						/>
 						<img
-							src={mobileHeroImg}
+							src={"/images/mobile-hero-img.svg"}
 							alt=""
 							className={styles["mobile-hero-img"]}
 						/>
