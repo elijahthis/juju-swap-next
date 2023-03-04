@@ -56,27 +56,27 @@
 			display: none;
 		}
 
-		& > div:first-of-type {
-			height: 55px;
+		// & > div:first-of-type {
+		// 	height: 55px;
 
-			& > button {
-				height: 55px;
-				font-family: "Euclid Circular A";
-				font-weight: 400;
-				font-size: 18px;
-				line-height: 23px;
-				color: #ffffff;
-				padding: 1rem 2rem;
-				background: linear-gradient(
-					302.87deg,
-					#26d0ce -18.22%,
-					#1a2980 101.04%
-				);
-				border-radius: 6px;
-				border: 0;
-				cursor: pointer;
-			}
-		}
+		// 	& > button {
+		// 		height: 55px;
+		// 		font-family: "Euclid Circular A";
+		// 		font-weight: 400;
+		// 		font-size: 18px;
+		// 		line-height: 23px;
+		// 		color: #ffffff;
+		// 		padding: 1rem 2rem;
+		// 		background: linear-gradient(
+		// 			302.87deg,
+		// 			#26d0ce -18.22%,
+		// 			#1a2980 101.04%
+		// 		);
+		// 		border-radius: 6px;
+		// 		border: 0;
+		// 		cursor: pointer;
+		// 	}
+		// }
 	}
 }
 
@@ -243,21 +243,21 @@
 		}
 
 		.btnWrap {
-			& > div:first-of-type {
-				height: 2rem;
+			// & > div:first-of-type {
+			// 	height: 2rem;
 
-				& > button {
-					font-weight: 400;
-					font-size: 12px;
-					line-height: 15px;
+			// 	& > button {
+			// 		font-weight: 400;
+			// 		font-size: 12px;
+			// 		line-height: 15px;
 
-					color: #ffffff;
-					padding: 0.5rem 0.75rem;
+			// 		color: #ffffff;
+			// 		padding: 0.5rem 0.75rem;
 
-					border-radius: 4px;
-					height: 2rem;
-				}
-			}
+			// 		border-radius: 4px;
+			// 		height: 2rem;
+			// 	}
+			// }
 		}
 	}
 }
