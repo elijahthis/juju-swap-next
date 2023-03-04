@@ -8,10 +8,10 @@ export const OverviewCharts = () => {
 				<h4>Juju Swap Overview</h4>
 				<div className={styles.OverviewCharts__charts}>
 					<div>
-						<img src={tvl} alt="" />
+						<img src={"/images/TVL.png"} alt="" />
 					</div>
 					<div>
-						<img src={tvl} alt="" />
+						<img src={"/images/TVL.png"} alt="" />
 					</div>
 				</div>
 			</div>

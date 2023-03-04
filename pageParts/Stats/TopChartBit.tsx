@@ -19,7 +19,7 @@ export const TopChartBit = () => {
 		<section className={styles.TopChartBit}>
 			<div>
 				<div className={styles.TopChartBit__head}>
-					<img src={wngn} alt="" />
+					<img src={"/images/wngn.svg"} alt="" />
 					<img
 						src={`https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/128/color/eth.png`}
 						alt=""
@@ -38,15 +38,15 @@ export const TopChartBit = () => {
 					<WhiteCard1
 						data={{
 							asset: "WNGN",
-							icon: wngn,
+							icon: "/images/wngn.svg",
 							amount: "$560,000",
 							rate: "1WNGN = 0.00456 ETH ($53.4)",
 						}}
 					/>
 				</div>
 				<div className={styles.TopChartBit__cards}>
-					<img src={liquidity} alt="" />
-					<img src={volume} alt="" />
+					<img src={"/images/liquidity.png"} alt="" />
+					<img src={"/images/volume.png"} alt="" />
 				</div>
 				<div className={styles.TopChartBit__cards2}>
 					{cardList2.map((cardItem, ind) => (

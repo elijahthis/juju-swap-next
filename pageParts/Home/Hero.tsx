@@ -4,8 +4,11 @@ import heroImg from "../../assets/images/hero-img.png";
 import mobileHeroImg from "../../assets/images/mobile-hero-img.svg";
 import { useQuery } from "@apollo/client";
 import { GET_JUJU_STATS } from "../../graphql/queries";
+import { useRouter } from "next/router";
 
 export const Hero = () => {
+	const router = useRouter();
+
 	const {
 		loading,
 		error,
@@ -42,10 +45,16 @@ export const Hero = () => {
 							Sell and buy your crypto directly and get paid, all in your local
 							currency.
 						</p>
-						<Button variant="primary">Get Started</Button>
+						<Button variant="primary" onClick={() => router.push("/exchange")}>
+							Get Started
+						</Button>
 					</div>
 					<div>
-						<img src={heroImg} alt="" className={styles["hero-img"]} />
+						<img
+							src={"/images/hero-img.png"}
+							alt=""
+							className={styles["hero-img"]}
+						/>
 						<img
 							src={mobileHeroImg}
 							alt=""
