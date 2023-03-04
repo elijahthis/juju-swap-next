@@ -26,7 +26,7 @@ const Header = () => {
 		{ name: "Docs", route: "/docs" },
 		{ name: "FAQ", route: "/FAQ" },
 	];
-	console.log(router.pathname);
+	console.log("router", router);
 	const [toggleOpen, setToggleOpen] = useState(false);
 
 	const userData = useJujuStore((state: any) => state.userData);
@@ -120,7 +120,7 @@ const Header = () => {
 									: ""
 							} ${
 								router.pathname === "/" && item.name === "Home"
-									? "Header__routes__routeItem--active"
+									? styles["Header__routes__routeItem--active"]
 									: ""
 							}`}
 							key={ind}
