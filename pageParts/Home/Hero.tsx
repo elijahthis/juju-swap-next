@@ -5,6 +5,7 @@ import mobileHeroImg from "../../assets/images/mobile-hero-img.svg";
 import { useQuery } from "@apollo/client";
 import { GET_JUJU_STATS } from "../../graphql/queries";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
 export const Hero = () => {
 	const router = useRouter();
@@ -49,18 +50,25 @@ export const Hero = () => {
 							Get Started
 						</Button>
 					</div>
-					<div>
-						<img
-							src={"/images/hero-img.png"}
-							alt=""
-							className={styles["hero-img"]}
-						/>
-						<img
-							src={"/images/mobile-hero-img.svg"}
-							alt=""
-							className={styles["mobile-hero-img"]}
-						/>
-					</div>
+					<motion.div
+						animate={{ y: -100 }}
+						// whileHover={{ scale: 1.2 }}
+						whileTap={{ scale: 0.9 }}
+						transition={{ type: "spring" }}
+					>
+						<div>
+							<img
+								src={"/images/hero-img.png"}
+								alt=""
+								className={styles["hero-img"]}
+							/>
+							<img
+								src={"/images/mobile-hero-img.svg"}
+								alt=""
+								className={styles["mobile-hero-img"]}
+							/>
+						</div>
+					</motion.div>
 				</div>
 				<div className={styles.Hero__analytics}>
 					{analytics.map((item, ind) => (
