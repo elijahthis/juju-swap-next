@@ -22,14 +22,14 @@ export const Hero = () => {
 			val: Intl.NumberFormat("en-US", {
 				notation: "compact",
 				maximumFractionDigits: 1,
-			}).format(jujuStats?.getJujuStats?.totalUsers),
+			}).format(jujuStats?.getJujuStats?.totalUsers ?? 0),
 		},
 		{
 			label: "cryptocurrencies",
 			val: Intl.NumberFormat("en-US", {
 				notation: "compact",
 				maximumFractionDigits: 1,
-			}).format(jujuStats?.getJujuStats?.supportedAssets?.length),
+			}).format(jujuStats?.getJujuStats?.supportedAssets?.length ?? 0),
 		},
 		{ label: "quarterly volume traded", val: "₦0" },
 	];
