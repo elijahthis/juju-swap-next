@@ -41,7 +41,7 @@ const { connectors } = getDefaultWallets({
 	chains,
 });
 const wagmiClient = createClient({
-	autoConnect: false,
+	autoConnect: true,
 	connectors,
 	provider,
 });
@@ -52,10 +52,7 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<ApolloProvider client={apolloClient}>
 			<WagmiConfig client={wagmiClient}>
-				<RainbowKitProvider
-					chains={chains}
-					 key={rainbowKey}
-				>
+				<RainbowKitProvider chains={chains} key={rainbowKey}>
 					<div className="App">
 						<Header />
 						<Component {...pageProps} />

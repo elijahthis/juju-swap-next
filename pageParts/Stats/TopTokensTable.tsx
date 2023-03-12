@@ -124,7 +124,7 @@ export const TopTokensTable = () => {
 									return {
 										...item,
 										tokenAddress: jujuItem[0]?.address,
-										chainId: jujuItem[0]?.chain?.id,
+										chainId: jujuItem[0]?.chainId,
 									};
 								}),
 							"web"
@@ -156,7 +156,7 @@ export const TopTokensTable = () => {
 									return {
 										...item,
 										tokenAddress: jujuItem[0]?.address,
-										chainId: jujuItem[0]?.chain?.id,
+										chainId: jujuItem[0]?.chainId,
 									};
 								}),
 							"mob"

@@ -51,23 +51,21 @@ export const Hero = () => {
 						</Button>
 					</div>
 					<motion.div
-						animate={{ y: -100 }}
+						animate={{ y: [100, 0] }}
 						// whileHover={{ scale: 1.2 }}
-						whileTap={{ scale: 0.9 }}
+						// whileTap={{ scale: 0.9 }}
 						transition={{ type: "spring" }}
 					>
-						<div>
-							<img
-								src={"/images/hero-img.png"}
-								alt=""
-								className={styles["hero-img"]}
-							/>
-							<img
-								src={"/images/mobile-hero-img.svg"}
-								alt=""
-								className={styles["mobile-hero-img"]}
-							/>
-						</div>
+						<img
+							src={"/images/hero-img.png"}
+							alt=""
+							className={styles["hero-img"]}
+						/>
+						<img
+							src={"/images/mobile-hero-img.svg"}
+							alt=""
+							className={styles["mobile-hero-img"]}
+						/>
 					</motion.div>
 				</div>
 				<div className={styles.Hero__analytics}>

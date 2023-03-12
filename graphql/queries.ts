@@ -4,14 +4,16 @@ export const GET_JUJU_STATS = gql`
 	query Query {
 		getJujuStats {
 			supportedAssets {
+				id
+				address
+				chainId
 				name
 				symbol
-				chain {
-					name
-					id
-				}
+				decimals
+				standardName
 				logo
-				address
+				isSupportedBackingToken
+				oracleAddress
 			}
 			activeChains {
 				name
