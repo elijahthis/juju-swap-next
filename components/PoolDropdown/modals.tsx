@@ -25,21 +25,24 @@ import {
 	GET_AGGREGATE_RATE,
 	GET_ADD_LIQUIDITY_QUOTE,
 	GET_ADD_LIQUIDITY_QUOTE_TX,
+	GET_REMOVE_LIQUIDITY_QUOTE,
+	GET_REMOVE_LIQUIDITY_QUOTE_TX,
 } from "../../graphql/queries";
 import { Spinner } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 
 export const PoolDropdownModal = ({
 	setAddModalOpen,
-	setRemoveModalOpen,
 	poolData,
+	setModal1Open,
 }: {
 	setAddModalOpen: any;
-	setRemoveModalOpen: any;
 	poolData: any;
+	setModal1Open: any;
 }) => {
 	const [copied, setCopied] = useState(false);
 	const [poolUserObj, setPoolUserObj] = useState<any>({});
+	const [removeModalOpen, setRemoveModalOpen] = useState(false);
 
 	const { address } = useAccount();
 	const { chain } = useNetwork();
@@ -72,95 +75,109 @@ export const PoolDropdownModal = ({
 	console.log("poolUserObj", poolUserObj);
 
 	return (
-		<div
-			className={`${styles.PoolDropdownModal} ${styles["PoolDropdownModal--open"]}`}
-		>
-			<div>
-				<div className={styles.PoolDropdownModal__asset}>
-					<div className={styles.pooled}>
-						<img src={poolData?.tokens[0]?.logo} alt="" />
-						<p>Pooled {poolData?.tokens[0]?.symbol}</p>
-					</div>
-					<p>
-						{PoolUserLoading ? (
-							<Spinner w={15} h={15} />
-						) : poolUserObj?.liquiditySupplied ? (
-							poolUserObj?.liquiditySupplied[0]?.liquidity
-						) : (
-							"-"
-						)}
-					</p>
-				</div>
-				<div className={styles.PoolDropdownModal__asset}>
-					<div className={styles.pooled}>
-						<img src={poolData?.tokens[1]?.logo} alt="" />
-						<p>Pooled {poolData?.tokens[1]?.symbol}</p>
-					</div>
-					<p>
-						{PoolUserLoading ? (
-							<Spinner w={15} h={15} />
-						) : poolUserObj?.liquiditySupplied ? (
-							poolUserObj?.liquiditySupplied[1]?.liquidity
-						) : (
-							"-"
-						)}
-					</p>
-				</div>
-				<div className={styles.PoolDropdownModal__info}>
-					<div className={styles["twoPart-info"]}>
-						<span>Your poolshare</span>
-						<span>
+		<>
+			<div
+				className={`${styles.PoolDropdownModal} ${styles["PoolDropdownModal--open"]}`}
+			>
+				<div>
+					<div className={styles.PoolDropdownModal__asset}>
+						<div className={styles.pooled}>
+							<img src={poolData?.tokens[0]?.logo} alt="" />
+							<p>Pooled {poolData?.tokens[0]?.symbol}</p>
+						</div>
+						<p>
 							{PoolUserLoading ? (
 								<Spinner w={15} h={15} />
+							) : poolUserObj?.liquiditySupplied ? (
+								poolUserObj?.liquiditySupplied[0]?.liquidity
 							) : (
-								poolUserObj?.poolShare
+								"-"
 							)}
-						</span>
+						</p>
 					</div>
-					<div className={styles["twoPart-info"]}>
-						<span>LP token received:</span>
-						<span>-</span>
-					</div>
-					<div className={styles["twoPart-info"]}>
-						<span>Annual percentage yield (APY)</span>
-						<span>-</span>
-					</div>
-					<div className={`${styles["twoPart-info"]} ${styles.addrDiv}`}>
-						<span>Pool address</span>
-						<div
-							className={styles["wallet-copy"]}
-							onClick={() => {
-								navigator.clipboard.writeText(poolData?.address);
-								setCopied(true);
-								setTimeout(() => {
-									setCopied(false);
-								}, 500);
-							}}
-						>
-							{copied ? (
-								<IoCheckmarkCircleSharp color="#4bb543" />
-							) : (
-								<IoCopy color="#8E8E93" />
-							)}
-							<span>{poolData?.address?.substring(0, 12) + "..."}</span>
+					<div className={styles.PoolDropdownModal__asset}>
+						<div className={styles.pooled}>
+							<img src={poolData?.tokens[1]?.logo} alt="" />
+							<p>Pooled {poolData?.tokens[1]?.symbol}</p>
 						</div>
+						<p>
+							{PoolUserLoading ? (
+								<Spinner w={15} h={15} />
+							) : poolUserObj?.liquiditySupplied ? (
+								poolUserObj?.liquiditySupplied[1]?.liquidity
+							) : (
+								"-"
+							)}
+						</p>
 					</div>
-					<div className={styles["check-stat"]}>
-						<HiOutlineExternalLink />
-						<span>Check stat</span>
-					</div>
-					<div className={styles.btnWrap}>
-						<button onClick={() => setRemoveModalOpen(true)}>
-							Remove liquidity
-						</button>
-						<button onClick={() => setAddModalOpen(true)}>
-							<BsFillPlusCircleFill size={11} />
-							Add liquidity instead
-						</button>
+					<div className={styles.PoolDropdownModal__info}>
+						<div className={styles["twoPart-info"]}>
+							<span>Your poolshare</span>
+							<span>
+								{PoolUserLoading ? (
+									<Spinner w={15} h={15} />
+								) : (
+									poolUserObj?.poolShare
+								)}
+							</span>
+						</div>
+						<div className={styles["twoPart-info"]}>
+							<span>LP token received:</span>
+							<span>-</span>
+						</div>
+						<div className={styles["twoPart-info"]}>
+							<span>Annual percentage yield (APY)</span>
+							<span>-</span>
+						</div>
+						<div className={`${styles["twoPart-info"]} ${styles.addrDiv}`}>
+							<span>Pool address</span>
+							<div
+								className={styles["wallet-copy"]}
+								onClick={() => {
+									navigator.clipboard.writeText(poolData?.address);
+									setCopied(true);
+									setTimeout(() => {
+										setCopied(false);
+									}, 500);
+								}}
+							>
+								{copied ? (
+									<IoCheckmarkCircleSharp color="#4bb543" />
+								) : (
+									<IoCopy color="#8E8E93" />
+								)}
+								<span>{poolData?.address?.substring(0, 12) + "..."}</span>
+							</div>
+						</div>
+						<div className={styles["check-stat"]}>
+							<HiOutlineExternalLink />
+							<span>Check stat</span>
+						</div>
+						<div className={styles.btnWrap}>
+							<button onClick={() => setRemoveModalOpen(true)}>
+								Remove liquidity
+							</button>
+							<button onClick={() => setAddModalOpen(true)}>
+								<BsFillPlusCircleFill size={11} />
+								Add liquidity instead
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+			<MUIModal
+				open={removeModalOpen}
+				handleClose={() => setRemoveModalOpen(false)}
+			>
+				<RemoveLiquidityModal
+					poolData={poolData}
+					poolUserObj={poolUserObj}
+					setRemoveModalOpen={setRemoveModalOpen}
+					setModal1Open={setModal1Open}
+					// setRemoveModalOpen={setRemoveModalOpen}
+				/>
+			</MUIModal>
+		</>
 	);
 };
 
@@ -554,10 +571,289 @@ export const AddLiquidityModal = ({
 	);
 };
 
-export const RemoveLiquidityModal = ({ poolData }: { poolData: any }) => {
+export const RemoveLiquidityModal = ({
+	poolData,
+	poolUserObj,
+	setRemoveModalOpen,
+	setModal1Open,
+}: {
+	poolData: any;
+	poolUserObj: any;
+	setRemoveModalOpen: Dispatch<SetStateAction<boolean>>;
+	setModal1Open?: Dispatch<SetStateAction<boolean>>;
+}) => {
 	const [liquidityPercent, setLiquidityPercent] = useState(50);
+	const [triggerTrans1, setTriggerTrans1] = useState(false);
+	const [triggerTrans2, setTriggerTrans2] = useState(false);
 
 	console.log("poolData", poolData);
+
+	const { chain } = useNetwork();
+	const { address } = useAccount();
+
+	const {
+		loading: tokenLoading,
+		error: tokenError,
+		data: chainTokens,
+	} = useQuery(GET_CHAIN_SUPPORTED_TOKENS, {
+		pollInterval: 300000,
+		variables: { chainId: chain?.id },
+	});
+
+	const {
+		loading: rateLoading,
+		error: rateError,
+		data: rateData,
+	} = useQuery(GET_AGGREGATE_RATE, {
+		pollInterval: 300000,
+		variables: {
+			chainId: chain?.id,
+			tokenAddress: poolData?.tokens[0]?.address,
+		},
+	});
+
+	// add liquidity queries
+	const [
+		getQuote,
+		{ loading: quoteLoading, error: quoteError, data: quoteData },
+	] = useLazyQuery(GET_REMOVE_LIQUIDITY_QUOTE, {
+		variables: {
+			user: address,
+			pool: poolData?.address,
+			liquidity:
+				(liquidityPercent * poolUserObj?.liquiditySupplied[0]?.liquidity) / 100,
+			chainId: chain?.id,
+		},
+		fetchPolicy: "no-cache",
+	});
+
+	const { __typename, ...rest } = quoteData?.getRemoveLiquidityQuote || {
+		__typename: "",
+		nil: "",
+	};
+
+	const [
+		getRemoveLiquidityTx,
+		{
+			loading: removeLiquidityTxLoading,
+			error: removeLiquidityTxError,
+			data: removeLiquidityTxData,
+		},
+	] = useLazyQuery(GET_REMOVE_LIQUIDITY_QUOTE_TX, {
+		variables: { removeLiquidityQuote: rest, chainId: chain?.id },
+		fetchPolicy: "no-cache",
+	});
+
+	// useEffect(() => {
+	// 	const fetchFunc = async () => {
+	// 		try {
+	// 			if (!tokenError && !tokenLoading)
+	// 				setCryptoOptions([
+	// 					...chainTokens?.getChainSupportedTokens?.map(
+	// 						(item: any, ind: number) => ({
+	// 							value: { address: item?.address, symbol: item?.symbol },
+	// 							label: (
+	// 								<div className={styles.cryptoOption} key={ind}>
+	// 									<img src={item?.logo} /> {item?.symbol}
+	// 								</div>
+	// 							),
+	// 						})
+	// 					),
+	// 				]);
+	// 			else console.log(tokenError);
+	// 		} catch (error) {
+	// 			console.log(error);
+	// 		}
+	// 	};
+
+	// 	fetchFunc();
+	// }, [tokenLoading]);
+
+	// useEffect(() => {
+	// 	const fetchFunc = async () => {
+	// 		try {
+	// 			if (!rateError && !rateLoading)
+	// 				setCurrentRate(rateData?.getAggregateRate);
+	// 			else console.log(rateError);
+	// 		} catch (error) {
+	// 			console.log(error);
+	// 		}
+	// 	};
+
+	// 	fetchFunc();
+	// }, [rateLoading]);
+
+	useEffect(() => {
+		// 2. this triggers the GET_SWAP_TO_WNGN_TX query as soon as the GET_SWAP_TO_WNGN_QUOTE query is successful
+		const fetchFunc = async () => {
+			try {
+				if (!quoteError && !quoteLoading) {
+					console.log(quoteData);
+					console.log(quoteData?.getRemoveLiquidityQuote);
+					getRemoveLiquidityTx();
+				} else {
+					console.log(quoteError);
+					console.log(quoteError?.graphQLErrors);
+					toast.error(quoteError?.graphQLErrors[0].message);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		fetchFunc();
+	}, [quoteLoading]);
+
+	useEffect(() => {
+		// 3. this turns on triggerTrans1 as soon as the GET_SWAP_TO_WNGN_TX query is successful
+		const fetchFunc = async () => {
+			try {
+				if (!removeLiquidityTxError && !removeLiquidityTxLoading) {
+					console.log("removeLiquidityTxData", removeLiquidityTxData);
+					if (removeLiquidityTxData) {
+						setTimeout(() => {
+							setTriggerTrans1(true);
+						}, 1000);
+					}
+				} else {
+					console.log(removeLiquidityTxError);
+					console.log(removeLiquidityTxError?.graphQLErrors);
+					toast.error(removeLiquidityTxError?.graphQLErrors[0].message);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		fetchFunc();
+	}, [removeLiquidityTxLoading]);
+
+	// run transaction 1
+
+	const { config: config1 } = usePrepareSendTransaction({
+		request: {
+			from: removeLiquidityTxData?.getRemoveLiquidityTx[0]?.from,
+			to: removeLiquidityTxData?.getRemoveLiquidityTx[0]?.to,
+			data: removeLiquidityTxData?.getRemoveLiquidityTx[0]?.data,
+			gasLimit: 3e7,
+		},
+		chainId: chain?.id,
+		onError(err) {
+			console.log("catchErr", err);
+		},
+	});
+
+	const { data: transData1, sendTransaction: sendTransaction1 } =
+		useSendTransaction({
+			...config1,
+			onError(err) {
+				console.log("catchErr", err);
+			},
+			onSettled(data, error) {
+				// 5. this turns off triggerTrans1 as soon as this (first) transaction is settled.
+				setTriggerTrans1(false);
+				console.log("Settled", { data, error });
+			},
+		});
+
+	const {
+		isLoading: trans1Loading,
+		isSuccess: trans1Success,
+		isError: isError1,
+	} = useWaitForTransaction({
+		// this waits for the first transaction
+		hash: transData1?.hash,
+		onSettled() {
+			setTriggerTrans1(false);
+		},
+		onError(err) {
+			console.log("catchErr", err);
+		},
+		onSuccess() {
+			// 6. this turns on triggerTras2 as soon as this (first) transaction is confirmed successful
+			setTriggerTrans2(true);
+		},
+	});
+
+	useEffect(() => {
+		// 4. this calls sendTransaction for the first transaction, as soon as triggerTrans1 is turned on
+
+		console.log("config1", config1);
+		console.log("triggerTrans1", triggerTrans1);
+		setTimeout(() => {
+			if (triggerTrans1) sendTransaction1?.();
+		}, 500);
+	}, [triggerTrans1]);
+
+	useEffect(() => {
+		console.log("trans1Loading", trans1Loading);
+		console.log("trans1Success", trans1Success);
+		console.log("isError1", isError1);
+
+		if (trans1Success || isError1) setTriggerTrans1(false);
+	}, [trans1Loading]);
+
+	// run transaction 2
+	const { config: config2 } = usePrepareSendTransaction({
+		request: {
+			from: removeLiquidityTxData?.getRemoveLiquidityTx[1]?.from,
+			to: removeLiquidityTxData?.getRemoveLiquidityTx[1]?.to,
+			data: removeLiquidityTxData?.getRemoveLiquidityTx[1]?.data,
+			gasLimit: 3e7,
+		},
+		chainId: chain?.id,
+		onError(err) {
+			console.log("catchErr", err);
+		},
+	});
+
+	const { data: transData2, sendTransaction: sendTransaction2 } =
+		useSendTransaction({
+			...config2,
+			onError(err) {
+				console.log("catchErr", err);
+			},
+			onSettled(data, error) {
+				// setTriggerTrans2(false);
+				console.log("Settled", { data, error });
+			},
+		});
+
+	const {
+		isLoading: trans2Loading,
+		isSuccess: trans2Success,
+		isError: isError2,
+	} = useWaitForTransaction({
+		hash: transData2?.hash,
+		onSettled() {
+			// setTriggerTrans2(false);
+			// toast.success("Transaction successful. Check your account.");
+		},
+		onError(err) {
+			console.log("catchErr", err);
+		},
+	});
+
+	useEffect(() => {
+		// 7. this calls sendTransaction for the second transaction, as soon as triggerTrans2 is turned on
+		console.log("config2", config2);
+		if (triggerTrans2) sendTransaction2?.();
+	}, [triggerTrans2]);
+
+	useEffect(() => {
+		// 8. This presents the success message and turns off triggerTrans2. Congrats! You're done!!
+		if (trans2Success) {
+			toast.success("Transaction successful. Check your account.");
+			setTriggerTrans2(false);
+
+			//close modals
+			setRemoveModalOpen(false);
+			setModal1Open && setModal1Open(false);
+		}
+		if (isError1) {
+			setTriggerTrans2(false);
+		}
+	}, [trans2Success]);
 
 	return (
 		<div className={styles.RemoveLiquidityModal}>
@@ -634,7 +930,20 @@ export const RemoveLiquidityModal = ({ poolData }: { poolData: any }) => {
 				</div>
 			</div>
 			<div className={styles.RemoveLiquidityModal__btn}>
-				<Button variant="primary">Remove liquidity</Button>
+				<Button
+					variant="primary"
+					onClick={() => {
+						getQuote();
+					}}
+					loading={
+						quoteLoading ||
+						removeLiquidityTxLoading ||
+						trans1Loading ||
+						trans2Loading
+					}
+				>
+					Remove liquidity
+				</Button>
 			</div>
 		</div>
 	);

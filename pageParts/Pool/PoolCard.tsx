@@ -53,6 +53,7 @@ export const PoolCard = () => {
 									<Button
 										variant="primary"
 										onClick={() => setAddModalOpen(true)}
+										disabled={pools.length === 0}
 									>
 										Add liquidity
 									</Button>

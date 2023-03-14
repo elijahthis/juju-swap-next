@@ -1,7 +1,7 @@
 import { BiChevronDown } from "react-icons/bi";
 import styles from "./styles.module.scss";
 import wngn from "../../assets/images/wngn.svg";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { IoCopy, IoCheckmarkCircleSharp } from "react-icons/io5";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import { HiOutlineExternalLink } from "react-icons/hi";
@@ -12,6 +12,9 @@ import {
 	AddLiquidityModal,
 	RemoveLiquidityModal,
 } from "./modals";
+import { useQuery } from "@apollo/client";
+import { useAccount, useNetwork } from "wagmi";
+import { GET_POOL_USER_DATA } from "@/graphql/queries";
 
 const PoolDropdown = ({ poolData }: { poolData: any }) => {
 	const [openDrop, setOpenDrop] = useState(false);
@@ -19,7 +22,34 @@ const PoolDropdown = ({ poolData }: { poolData: any }) => {
 	const [copied, setCopied] = useState(false);
 	const [modal1Open, setModal1Open] = useState(false);
 	const [addModalOpen, setAddModalOpen] = useState(false);
-	const [removeModalOpen, setRemoveModalOpen] = useState(false);
+
+	const [poolUserObj, setPoolUserObj] = useState<any>({});
+
+	const { address } = useAccount();
+	const { chain } = useNetwork();
+
+	const {
+		loading: PoolUserLoading,
+		data: PoolUserData,
+		error: PoolUserError,
+	} = useQuery(GET_POOL_USER_DATA, {
+		variables: { chainId: chain?.id, pool: poolData?.address, user: address },
+	});
+
+	useEffect(() => {
+		const fetchFunc = async () => {
+			try {
+				if (!PoolUserError && !PoolUserLoading) {
+					console.log("PoolUserData", PoolUserData?.getPoolUserData);
+					setPoolUserObj(PoolUserData?.getPoolUserData);
+				} else console.log(PoolUserError);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		fetchFunc();
+	}, [PoolUserLoading]);
 
 	const dropRef = useRef(null);
 
@@ -40,13 +70,7 @@ const PoolDropdown = ({ poolData }: { poolData: any }) => {
 					</div>
 					<div>
 						<span></span>
-						<p className={styles.price}>
-							{
-								poolData?.tokens?.filter(
-									(item: any) => item?.symbol !== "WNGN"
-								)[0]?.liquidity
-							}
-						</p>
+						<p className={styles.price}>{poolUserObj?.poolShare}</p>
 					</div>
 				</div>
 				<div
@@ -63,24 +87,14 @@ const PoolDropdown = ({ poolData }: { poolData: any }) => {
 			<MUIModal open={modal1Open} handleClose={() => setModal1Open(false)}>
 				<PoolDropdownModal
 					setAddModalOpen={setAddModalOpen}
-					setRemoveModalOpen={setRemoveModalOpen}
 					poolData={poolData}
+					setModal1Open={setModal1Open}
 				/>
 			</MUIModal>
 			<MUIModal open={addModalOpen} handleClose={() => setAddModalOpen(false)}>
 				<AddLiquidityModal
 					setAddModalOpen={setAddModalOpen}
 					setModal1Open={setModal1Open}
-					// setRemoveModalOpen={setRemoveModalOpen}
-				/>
-			</MUIModal>
-			<MUIModal
-				open={removeModalOpen}
-				handleClose={() => setRemoveModalOpen(false)}
-			>
-				<RemoveLiquidityModal
-					poolData={poolData}
-					// setAddModalOpen={setAddModalOpen}
 					// setRemoveModalOpen={setRemoveModalOpen}
 				/>
 			</MUIModal>
