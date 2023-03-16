@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import BlackTabs from "../../components/BlackTabs";
 import Overview from "./Overview";
 import Pool from "./Pool";
 import Token from "./Token";
 import { Footer } from "../../components/Footer";
 import { useRouter } from "next/router";
+import PageLayout from "@/layouts/PageLayout";
 
 const Stats = () => {
 	const tabList = ["Overview", "Pool", "Token"];
@@ -44,3 +45,7 @@ const Stats = () => {
 };
 
 export default Stats;
+
+Stats.getLayout = function getLayout(page: ReactNode) {
+	return <PageLayout>{page}</PageLayout>;
+};

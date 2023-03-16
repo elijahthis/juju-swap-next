@@ -8,9 +8,16 @@ export const useJujuStore = create((set: any) => ({
 	updateUserData: (values: any) =>
 		set((state: any) => ({ userData: { ...state.userData, ...values } })),
 
+	userID: {},
+	updateUserID: (values: any) =>
+		set((state: any) => ({ userID: { ...state.userID, ...values } })),
+
 	marketData: [],
 	updateMarketData: (values: any) =>
 		set((state: any) => ({ marketData: values })),
+
+	bankList: [],
+	updateBankList: (values: any) => set((state: any) => ({ bankList: values })),
 
 	rainbowKey: 1234,
 	updateRainbowKey: (value: number) =>

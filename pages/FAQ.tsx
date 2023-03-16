@@ -1,3 +1,5 @@
+import PageLayout from "@/layouts/PageLayout";
+import { ReactNode } from "react";
 import ComingSoon from "./ComingSoon";
 
 const FAQ = () => {
@@ -9,3 +11,7 @@ const FAQ = () => {
 };
 
 export default FAQ;
+
+FAQ.getLayout = function getLayout(page: ReactNode) {
+	return <PageLayout>{page}</PageLayout>;
+};

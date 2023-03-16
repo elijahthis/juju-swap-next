@@ -1,5 +1,7 @@
 import { PoolCard, Transactions } from "../pageParts/Pool";
 import { Footer } from "../components/Footer";
+import PageLayout from "@/layouts/PageLayout";
+import { ReactNode } from "react";
 
 const Pool = () => {
 	return (
@@ -12,3 +14,7 @@ const Pool = () => {
 };
 
 export default Pool;
+
+Pool.getLayout = function getLayout(page: ReactNode) {
+	return <PageLayout>{page}</PageLayout>;
+};

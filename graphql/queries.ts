@@ -284,3 +284,25 @@ export const GET_REMOVE_LIQUIDITY_QUOTE_TX = gql`
 		}
 	}
 `;
+
+export const GET_USER_ID = gql`
+	query Query($eoa: String!) {
+		getUserId(eoa: $eoa) {
+			... on User {
+				id
+				eoa
+				createdAt
+				accountDetails {
+					accountName
+					accountNumber
+					default
+					bank {
+						name
+						id
+						code
+					}
+				}
+			}
+		}
+	}
+`;

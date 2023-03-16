@@ -1,3 +1,5 @@
+import PageLayout from "@/layouts/PageLayout";
+import { ReactNode } from "react";
 import {
 	OverviewCharts,
 	TopPoolsTable,
@@ -13,3 +15,7 @@ const Token = () => {
 };
 
 export default Token;
+
+Token.getLayout = function getLayout(page: ReactNode) {
+	return <PageLayout>{page}</PageLayout>;
+};

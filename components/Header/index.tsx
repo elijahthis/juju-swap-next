@@ -15,6 +15,7 @@ import { useJujuStore } from "../../zustand/store";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import GeneralRequests from "./GeneralRequests";
 
 const Header = () => {
 	const router = useRouter();
@@ -26,6 +27,7 @@ const Header = () => {
 		{ name: "Stats", route: "/stats" },
 		{ name: "Docs", route: "/docs" },
 		{ name: "FAQ", route: "/FAQ" },
+		{ name: "Settings", route: "/settings" },
 	];
 	console.log("router", router);
 	const [toggleOpen, setToggleOpen] = useState(false);
@@ -118,6 +120,51 @@ const Header = () => {
 
 	return (
 		<header className={styles.Header}>
+			{/* This styles the Rainbowkit button  */}
+			<style global jsx>
+				{`
+					.styles_Header__SFkYf .iekbcc0.ju367v1n.ju367v1n {
+						height: 55px;
+					}
+					.styles_Header__SFkYf
+						.iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju367v11.ju367v1c.ju367v2b.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+						height: 55px;
+						font-family: "Euclid Circular A";
+						font-weight: 400;
+						font-size: 18px;
+						line-height: 23px;
+						color: #ffffff;
+						padding: 1rem 2rem;
+						background: linear-gradient(
+							302.87deg,
+							#26d0ce -18.22%,
+							#1a2980 101.04%
+						);
+						border-radius: 6px;
+						border: 0;
+						cursor: pointer;
+					}
+
+					@media screen and (max-width: 1024px) {
+						.styles_Header__SFkYf .iekbcc0.ju367v1n.ju367v1n {
+							height: 2rem;
+						}
+						.styles_Header__SFkYf
+							.iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju367v11.ju367v1c.ju367v2b.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+							font-weight: 400;
+							font-size: 12px;
+							line-height: 15px;
+
+							color: #ffffff;
+							padding: 0.5rem 0.75rem;
+
+							border-radius: 4px;
+							height: 2rem;
+						}
+					}
+				`}
+			</style>
+
 			<div>
 				<Link href="/">
 					<JujuLogo />
@@ -160,6 +207,7 @@ const Header = () => {
 				setToggleOpen={setToggleOpen}
 				routesList={routesList}
 			/>
+			<GeneralRequests />
 		</header>
 	);
 };

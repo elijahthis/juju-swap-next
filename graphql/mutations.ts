@@ -59,3 +59,33 @@ export const ADD_USER = gql`
 		}
 	}
 `;
+
+export const ADD_ACCOUNT_DETAILS = gql`
+	mutation AddAccountDetails(
+		$userId: String!
+		$accountNumber: String!
+		$accountName: String!
+		$bankName: String!
+		$bankCode: String
+	) {
+		addAccountDetails(
+			userId: $userId
+			accountNumber: $accountNumber
+			accountName: $accountName
+			bankName: $bankName
+			bankCode: $bankCode
+		) {
+			... on AccountDetails {
+				accountName
+				accountNumber
+				default
+				id
+			}
+			... on Error {
+				additionalInfo
+				code
+				message
+			}
+		}
+	}
+`;

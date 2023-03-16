@@ -33,6 +33,7 @@ const HeaderDrawer = ({
 	const routesList_2 = [
 		{ name: "Docs", route: "/docs" },
 		{ name: "Privacy Policy", route: "/privacy-policy" },
+		{ name: "Settings", route: "/settings" },
 	];
 
 	const socialLinks = [

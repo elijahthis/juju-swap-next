@@ -13,6 +13,7 @@ export const Footer = () => {
 		{ name: "Exchange", route: "/exchange" },
 		{ name: "Docs", route: "/Docs" },
 		{ name: "Pool", route: "/pool" },
+		{ name: "Settings", route: "/settings" },
 		{ name: "Privacy policy", route: "/privacy-policy" },
 	];
 
