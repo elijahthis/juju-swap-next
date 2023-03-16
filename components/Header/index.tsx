@@ -96,16 +96,17 @@ const Header = () => {
 		},
 		onError(err) {
 			console.log("err", err);
-			toast.error(err.message);
+			if (!address) toast.error(err.message);
 
 			/*
 			Disconnect wallet here:
 			note that I had to reset the rainbowkit key to dismiss the connect modal. Weird rainbowKit bug
 			Ref: https://github.com/rainbow-me/rainbowkit/issues/686#issuecomment-1295798813
 			*/
-			disconnect().then(() => {
-				updateRainbowKey(new Date().getTime());
-			});
+			if (!address)
+				disconnect().then(() => {
+					updateRainbowKey(new Date().getTime());
+				});
 		},
 	});
 
