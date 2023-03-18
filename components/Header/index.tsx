@@ -79,7 +79,6 @@ const Header = () => {
 							},
 							onCompleted(data) {
 								console.log("data", data);
-								updateUserData(data);
 								toast.success("User Login Successful");
 							},
 							onError(error) {

@@ -1,0 +1,30 @@
+.AccountCard {
+	padding: 1.5rem 1rem;
+	background: url("/Whangaehu --white.3d3dfd74.svg"), #0c0b0e;
+	border-radius: 0.5rem;
+	color: #ffffff;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+
+	p {
+		color: #ffffff;
+	}
+
+	&__bank {
+		// text-transform: uppercase;
+	}
+
+	&__accountName {
+		font-size: 1rem;
+	}
+	& > :last-child {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 1rem;
+	}
+}

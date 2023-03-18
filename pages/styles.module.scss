@@ -69,6 +69,13 @@
 			border-radius: 50%;
 		}
 	}
+
+	.accounts {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+		gap: 1rem;
+		margin: 2rem 0;
+	}
 }
 
 @media screen and (max-width: 1024px) {
@@ -83,8 +90,16 @@
 	}
 
 	.Settings {
+		padding: 2rem 1rem;
 		.Account__innerForm {
 			padding: 1.5rem 1rem;
+		}
+
+		.accounts {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 1rem;
+			margin: 2rem 0;
 		}
 	}
 }

@@ -1,7 +1,7 @@
-import { GET_USER_ID } from "@/graphql/queries";
+import { GET_USER, GET_USER_ID } from "@/graphql/queries";
 import { getBankList } from "@/requests";
 import { useJujuStore } from "@/zustand/store";
-import { useQuery } from "@apollo/client";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import { useEffect } from "react";
 import { useAccount } from "wagmi";
 
@@ -9,6 +9,9 @@ const GeneralRequests = () => {
 	// zustand global states
 	const bankList = useJujuStore((state: any) => state.bankList);
 	const userData = useJujuStore((state: any) => state.userData);
+	const updateUserData = useJujuStore((state: any) => state.updateUserData);
+	const updateUserFunc = useJujuStore((state: any) => state.updateUserFunc);
+	const userID = useJujuStore((state: any) => state.userID);
 	const updateUserID = useJujuStore((state: any) => state.updateUserID);
 	const updateBankList = useJujuStore((state: any) => state.updateBankList);
 
@@ -30,7 +33,7 @@ const GeneralRequests = () => {
 		fetchFunc();
 	}, []);
 
-	// FETCH userId object (getUserId)
+	// FETCH userId (getUserId)
 	const {
 		loading: userIdLoading,
 		error: userIdError,
@@ -40,9 +43,28 @@ const GeneralRequests = () => {
 		variables: { eoa: address },
 	});
 
+	// FETCH user object (getUser)
+	const [
+		getUserFunc,
+		{ loading: userObjLoading, error: userObjError, data: userObj },
+	] = useLazyQuery(GET_USER, {
+		variables: { userId: userID },
+		fetchPolicy: "no-cache",
+	});
+
 	useEffect(() => {
-		if (!userIdLoading && !userIdError) updateUserID(userIdObj?.getUserId[0]);
+		if (!userIdLoading && !userIdError) {
+			updateUserID(userIdObj?.getUserId?.id);
+			getUserFunc();
+			updateUserFunc(getUserFunc);
+		}
 	}, [userIdLoading]);
+
+	useEffect(() => {
+		if (!userObjLoading && !userObjError) updateUserData(userObj?.getUser);
+	}, [userObjLoading]);
+
+	console.log("userData", userData);
 
 	return <span></span>;
 };

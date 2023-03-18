@@ -8,9 +8,11 @@ export const useJujuStore = create((set: any) => ({
 	updateUserData: (values: any) =>
 		set((state: any) => ({ userData: { ...state.userData, ...values } })),
 
-	userID: {},
-	updateUserID: (values: any) =>
-		set((state: any) => ({ userID: { ...state.userID, ...values } })),
+	userFunc: () => {},
+	updateUserFunc: (value: any) => set((state: any) => ({ userFunc: value })),
+
+	userID: "",
+	updateUserID: (value: any) => set((state: any) => ({ userID: value })),
 
 	marketData: [],
 	updateMarketData: (values: any) =>

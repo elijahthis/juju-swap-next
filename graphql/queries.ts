@@ -286,22 +286,48 @@ export const GET_REMOVE_LIQUIDITY_QUOTE_TX = gql`
 `;
 
 export const GET_USER_ID = gql`
-	query Query($eoa: String!) {
+	query UserId($eoa: String!) {
 		getUserId(eoa: $eoa) {
-			... on User {
+			... on userId {
 				id
+			}
+		}
+	}
+`;
+
+export const GET_USER = gql`
+	query User($userId: String!) {
+		getUser(userId: $userId) {
+			... on User {
 				eoa
+				kyc {
+					createdAt
+					identificationFirstName
+					identificationImage
+					identificationLastName
+					identificationMiddleName
+					identificationNumber
+					identificationType
+					updatedAt
+					status
+					id
+				}
+				id
 				createdAt
 				accountDetails {
 					accountName
 					accountNumber
-					default
 					bank {
-						name
-						id
 						code
+						id
+						name
 					}
+					default
+					id
 				}
+				level
+				reference
+				signature
 			}
 		}
 	}

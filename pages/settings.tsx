@@ -1,3 +1,4 @@
+import AccountCard from "@/components/AccountCard";
 import AssetSelect from "@/components/AssetSelect";
 import BlackCard from "@/components/BlackCard";
 import Button from "@/components/Button";
@@ -17,6 +18,8 @@ const Settings = () => {
 	// zustand global states
 	const bankList = useJujuStore((state: any) => state.bankList);
 	const userID = useJujuStore((state: any) => state.userID);
+	const userData = useJujuStore((state: any) => state.userData);
+	const userFunc = useJujuStore((state: any) => state.userFunc);
 
 	const [accountNumber, setAccountNumber] = useState("");
 	const [accountName, setAccountName] = useState("");
@@ -105,6 +108,7 @@ const Settings = () => {
 										setAccountName("");
 										setAccountNumber("");
 										setBankObj({ name: "", code: "" });
+										userFunc();
 									},
 									onError(error) {
 										console.log(error);
@@ -138,7 +142,22 @@ const Settings = () => {
 					</form>
 				</BlackCard>
 
-				<div></div>
+				<div className={styles.accounts}>
+					{userData?.accountDetails ? (
+						userData?.accountDetails?.map((item: any) => (
+							<AccountCard
+								accountData={{
+									accountName: item?.accountName,
+									accountNumber: item?.accountNumber,
+									bank: item?.bank?.name,
+									default: item?.default,
+								}}
+							/>
+						))
+					) : (
+						<></>
+					)}
+				</div>
 			</div>
 		</main>
 	);
