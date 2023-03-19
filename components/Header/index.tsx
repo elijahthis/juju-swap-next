@@ -20,15 +20,6 @@ import GeneralRequests from "./GeneralRequests";
 const Header = () => {
 	const router = useRouter();
 
-	const routesList = [
-		{ name: "Home", route: "/" },
-		{ name: "Exchange", route: "/exchange" },
-		{ name: "Pool", route: "/pool" },
-		{ name: "Stats", route: "/stats" },
-		{ name: "Docs", route: "/docs" },
-		{ name: "FAQ", route: "/FAQ" },
-		{ name: "Settings", route: "/settings" },
-	];
 	console.log("router", router);
 	const [toggleOpen, setToggleOpen] = useState(false);
 
@@ -102,10 +93,10 @@ const Header = () => {
 			note that I had to reset the rainbowkit key to dismiss the connect modal. Weird rainbowKit bug
 			Ref: https://github.com/rainbow-me/rainbowkit/issues/686#issuecomment-1295798813
 			*/
-			if (!address)
-				disconnect().then(() => {
-					updateRainbowKey(new Date().getTime());
-				});
+			// if (!address)
+			disconnect().then(() => {
+				updateRainbowKey(new Date().getTime());
+			});
 		},
 	});
 
@@ -117,6 +108,16 @@ const Header = () => {
 			signMessage();
 		}
 	}, [address, messageLoading]);
+
+	const routesList = [
+		{ name: "Home", route: "/" },
+		{ name: "Exchange", route: "/exchange" },
+		{ name: "Pool", route: "/pool" },
+		{ name: "Stats", route: "/stats" },
+		{ name: "Docs", route: "/docs" },
+		{ name: "FAQ", route: "/FAQ" },
+		...(address ? [{ name: "Settings", route: "/settings" }] : []),
+	];
 
 	return (
 		<header className={styles.Header}>
