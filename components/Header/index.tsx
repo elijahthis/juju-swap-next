@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { JujuLogo } from "../svgs";
 import Button from "../Button";
 import styles from "./styles.module.scss";
@@ -25,6 +26,8 @@ const Header = () => {
 
 	const userData = useJujuStore((state: any) => state.userData);
 	const updateUserData = useJujuStore((state: any) => state.updateUserData);
+	const userSigned = useJujuStore((state: any) => state.userSigned);
+	const updateUserSigned = useJujuStore((state: any) => state.updateUserSigned);
 	const rainbowKey = useJujuStore((state: any) => state.rainbowKey);
 	const updateRainbowKey = useJujuStore((state: any) => state.updateRainbowKey);
 
@@ -71,6 +74,7 @@ const Header = () => {
 							onCompleted(data) {
 								console.log("data", data);
 								toast.success("User Login Successful");
+								updateUserSigned(true);
 							},
 							onError(error) {
 								console.log(error);
@@ -97,6 +101,7 @@ const Header = () => {
 			disconnect().then(() => {
 				updateRainbowKey(new Date().getTime());
 			});
+			updateUserSigned(false);
 		},
 	});
 
@@ -107,6 +112,8 @@ const Header = () => {
 			//comment this out when testing
 			signMessage();
 		}
+
+		if (!address) updateUserSigned(false);
 	}, [address, messageLoading]);
 
 	const routesList = [
@@ -116,8 +123,12 @@ const Header = () => {
 		{ name: "Stats", route: "/stats" },
 		{ name: "Docs", route: "/docs" },
 		{ name: "FAQ", route: "/FAQ" },
-		...(address ? [{ name: "Settings", route: "/settings" }] : []),
+		{ name: "Settings", route: "/settings" },
 	];
+
+	const filteredRoutes = userSigned
+		? routesList
+		: routesList.filter((route) => route.name !== "Settings");
 
 	return (
 		<header className={styles.Header}>
@@ -171,22 +182,26 @@ const Header = () => {
 					<JujuLogo />
 				</Link>
 				<ul className={styles.Header__routes}>
-					{routesList.map((item, ind) => (
-						<li
-							className={`${styles.Header__routes__routeItem} ${
-								router.pathname.startsWith(item.route) && item.name !== "Home"
-									? styles["Header__routes__routeItem--active"]
-									: ""
-							} ${
-								router.pathname === "/" && item.name === "Home"
-									? styles["Header__routes__routeItem--active"]
-									: ""
-							}`}
-							key={ind}
-						>
-							<Link href={item.route}>{item?.name}</Link>
-						</li>
-					))}
+					{filteredRoutes.map(
+						(item, ind) =>
+							item && (
+								<li
+									className={`${styles.Header__routes__routeItem} ${
+										router.pathname.startsWith(item.route) &&
+										item.name !== "Home"
+											? styles["Header__routes__routeItem--active"]
+											: ""
+									} ${
+										router.pathname === "/" && item.name === "Home"
+											? styles["Header__routes__routeItem--active"]
+											: ""
+									}`}
+									key={item.route}
+								>
+									<Link href={item.route}>{item?.name}</Link>
+								</li>
+							)
+					)}
 				</ul>
 				<div className={styles.btnWrap}>
 					<ConnectButton
@@ -213,4 +228,5 @@ const Header = () => {
 	);
 };
 
-export default Header;
+// export default Header;
+export default dynamic(() => Promise.resolve(Header), { ssr: false });

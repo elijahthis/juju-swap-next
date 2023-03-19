@@ -8,6 +8,11 @@ export const useJujuStore = create((set: any) => ({
 	updateUserData: (values: any) =>
 		set((state: any) => ({ userData: { ...state.userData, ...values } })),
 
+	//this keeps track of whether the user has signed
+	userSigned: false,
+	updateUserSigned: (value: boolean) =>
+		set((state: any) => ({ userSigned: value })),
+
 	//this reloads the getUser query
 	userFunc: () => {},
 	updateUserFunc: (value: any) => set((state: any) => ({ userFunc: value })),

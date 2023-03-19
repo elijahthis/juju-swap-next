@@ -1,4 +1,5 @@
 import styles from "./styles.module.scss";
+import dynamic from "next/dynamic";
 import { JujuLogo } from "../svgs";
 import { Drawer } from "@mui/material";
 import { MdOutlineClose } from "react-icons/md";
@@ -11,6 +12,8 @@ import { customSX } from "../../constants";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { toggleSideDrawer } from "../../utils/helperFuncs";
 import { useRouter } from "next/router";
+import { useAccount } from "wagmi";
+import { useJujuStore } from "@/zustand/store";
 
 const HeaderDrawer = ({
 	toggleOpen,
@@ -21,7 +24,12 @@ const HeaderDrawer = ({
 	setToggleOpen: any;
 	routesList: any;
 }) => {
+	//zustand
+	const userSigned = useJujuStore((state: any) => state.userSigned);
+
 	const router = useRouter();
+
+	const { address } = useAccount();
 
 	const routesList_1 = [
 		{ name: "Home", route: "/" },
@@ -35,6 +43,10 @@ const HeaderDrawer = ({
 		{ name: "Privacy Policy", route: "/privacy-policy" },
 		{ name: "Settings", route: "/settings" },
 	];
+
+	const filteredRoutes_2 = userSigned
+		? routesList_2
+		: routesList_2.filter((route) => route.name !== "Settings");
 
 	const socialLinks = [
 		{ icon: <BsTwitter color="#1F2832" />, link: "/" },
@@ -100,7 +112,7 @@ const HeaderDrawer = ({
 					))}
 				</ul>
 				<ul>
-					{routesList_2.map((routeItem: any, ind: number) => (
+					{filteredRoutes_2.map((routeItem: any, ind: number) => (
 						<li
 							className={`${styles.mobileNav__routeItem} ${
 								router.pathname.startsWith(routeItem.route) &&
@@ -137,7 +149,8 @@ const HeaderDrawer = ({
 	);
 };
 
-export default HeaderDrawer;
+// export default HeaderDrawer;
+export default dynamic(() => Promise.resolve(HeaderDrawer), { ssr: false });
 
 export const MyButtonn = () => {
 	return (
