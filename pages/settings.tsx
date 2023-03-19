@@ -4,6 +4,7 @@ import BlackCard from "@/components/BlackCard";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Label from "@/components/Label";
+import SpinnerComponent from "@/components/SpinnerComponent";
 import { ADD_ACCOUNT_DETAILS } from "@/graphql/mutations";
 import useDebounce from "@/hooks/useDebounce";
 import PageLayout from "@/layouts/PageLayout";
@@ -19,6 +20,7 @@ const Settings = () => {
 	const bankList = useJujuStore((state: any) => state.bankList);
 	const userID = useJujuStore((state: any) => state.userID);
 	const userData = useJujuStore((state: any) => state.userData);
+	const userLoading = useJujuStore((state: any) => state.userLoading);
 	const userFunc = useJujuStore((state: any) => state.userFunc);
 
 	const [accountNumber, setAccountNumber] = useState("");
@@ -78,7 +80,7 @@ const Settings = () => {
 							e.preventDefault();
 							if (
 								!accountNameLoading &&
-								userID?.id &&
+								userID &&
 								bankObj.name &&
 								bankObj.code &&
 								accountNumber &&
@@ -94,7 +96,7 @@ const Settings = () => {
 
 								addAcctDetailsMutation({
 									variables: {
-										userId: userID?.id,
+										userId: userID,
 										accountNumber: accountNumber,
 										accountName: accountName,
 										bankName: bankObj.name,
@@ -126,6 +128,7 @@ const Settings = () => {
 									onChange={(e: any) => {
 										setBankObj(e.value);
 									}}
+									// value={bankOptions[0]}
 									defaultValue={bankOptions[0]}
 								/>
 							</Label>
@@ -142,22 +145,29 @@ const Settings = () => {
 					</form>
 				</BlackCard>
 
-				<div className={styles.accounts}>
-					{userData?.accountDetails ? (
-						userData?.accountDetails?.map((item: any) => (
-							<AccountCard
-								accountData={{
-									accountName: item?.accountName,
-									accountNumber: item?.accountNumber,
-									bank: item?.bank?.name,
-									default: item?.default,
-								}}
-							/>
-						))
-					) : (
-						<></>
-					)}
-				</div>
+				{userLoading ? (
+					<div style={{ padding: "3rem 0" }}>
+						<SpinnerComponent color="#0c0b0e" size={50} />
+					</div>
+				) : (
+					<div className={styles.accounts}>
+						{userData?.accountDetails ? (
+							userData?.accountDetails?.map((item: any) => (
+								<AccountCard
+									accountData={{
+										id: item?.id,
+										accountName: item?.accountName,
+										accountNumber: item?.accountNumber,
+										bank: item?.bank?.name,
+										default: item?.default,
+									}}
+								/>
+							))
+						) : (
+							<></>
+						)}
+					</div>
+				)}
 			</div>
 		</main>
 	);

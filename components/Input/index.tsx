@@ -87,7 +87,7 @@ const Input = ({
 				<div className={styles.Input}>
 					<input
 						type="text"
-						// value={value}
+						value={value}
 						disabled={disabled}
 						onChange={(e) => onChange && onChange(e)}
 						required={required}

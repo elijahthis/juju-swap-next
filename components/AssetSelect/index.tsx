@@ -2,11 +2,13 @@ import Select from "react-select";
 
 const AssetSelect = ({
 	options,
+	value,
 	defaultValue,
 	onChange,
 }: {
 	options: any;
-	defaultValue: any;
+	value?: any;
+	defaultValue?: any;
 	onChange: any;
 }) => {
 	const colourStyles = {
@@ -83,11 +85,15 @@ const AssetSelect = ({
 		}),
 	};
 
+	console.log("options", options);
+	console.log("value", value);
+
 	return (
 		<Select
 			options={options}
 			styles={colourStyles}
-			defaultValue={defaultValue}
+			value={value}
+			// defaultValue={defaultValue}
 			onChange={onChange}
 		/>
 	);

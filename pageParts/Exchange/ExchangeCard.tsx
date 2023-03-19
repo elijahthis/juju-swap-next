@@ -31,6 +31,7 @@ import { getBankList, getAccountName } from "../../requests";
 import { useJujuStore } from "../../zustand/store";
 import useDebounce from "../../hooks/useDebounce";
 import { toast } from "react-toastify";
+import SpinnerComponent from "@/components/SpinnerComponent";
 
 export const ExchangeCard = () => {
 	/* 
@@ -44,22 +45,26 @@ export const ExchangeCard = () => {
 	*/
 
 	const marketData = useJujuStore((state: any) => state.marketData);
+	const userData = useJujuStore((state: any) => state.userData);
+	const userLoading = useJujuStore((state: any) => state.userLoading);
 
 	const [currentTab, setCurrentTab] = useState(0);
 
 	const [assetObj, setAssetObj] = useState({ address: "", symbol: "" });
 	const [cryptoOptions, setCryptoOptions] = useState<any>([]);
 	const [bankOptions, setBankOptions] = useState<any>([]);
+	const [accountOptions, setAccountOptions] = useState<any>([]);
 	const [currentRate, setCurrentRate] = useState(0);
 	const [assetAmount, setAssetAmount] = useState(0);
 	const [nairaAmount, setNairaAmount] = useState(0);
 	const [accountNumber, setAccountNumber] = useState("");
 	const [accountName, setAccountName] = useState("");
-	const [bankObj, setBankObj] = useState({ name: "", code: "" });
+	const [bankObj, setBankObj] = useState({ name: "", code: "", logo: "" });
 	const [accountNameLoading, setAccountNameLoading] = useState(false);
 	const [triggerTrans1, setTriggerTrans1] = useState(false);
 	const [triggerTrans2, setTriggerTrans2] = useState(false);
 	const [isWNGN, setIsWNGN] = useState(false);
+	const [reload, setReload] = useState(false);
 
 	const { chain } = useNetwork();
 	const { address } = useAccount();
@@ -213,12 +218,13 @@ export const ExchangeCard = () => {
 
 				setBankOptions(
 					res.data?.map((item: any) => ({
-						value: { name: item?.name, code: item?.code },
+						value: item?.name,
 						label: (
 							<div className={styles.cryptoOption}>
 								<img src={item?.logo} /> {item?.name}
 							</div>
 						),
+						obj: { name: item?.name, code: item?.code, logo: item?.logo },
 					}))
 				);
 			} catch (e) {
@@ -394,18 +400,12 @@ export const ExchangeCard = () => {
 	useEffect(() => {
 		// 4. this calls sendTransaction for the first transaction, as soon as triggerTrans1 is turned on
 
-		console.log("config1", config1);
-		console.log("triggerTrans1", triggerTrans1);
 		setTimeout(() => {
 			if (triggerTrans1) sendTransaction1?.();
 		}, 500);
 	}, [triggerTrans1]);
 
 	useEffect(() => {
-		console.log("trans1Loading", trans1Loading);
-		console.log("trans1Success", trans1Success);
-		console.log("isError1", isError1);
-
 		if (trans1Success || isError1) setTriggerTrans1(false);
 	}, [trans1Loading]);
 
@@ -472,6 +472,41 @@ export const ExchangeCard = () => {
 			setTriggerTrans2(false);
 		}
 	}, [trans2Success]);
+
+	useEffect(() => {
+		if (!userLoading && userData?.accountDetails) {
+			setAccountOptions(
+				userData?.accountDetails?.map((item: any) => ({
+					value: item?.bank?.name,
+					label: (
+						<div className={styles.cryptoOption}>
+							<img
+								src={
+									bankOptions?.filter(
+										(bankObj: any) => bankObj?.obj?.code === item?.bank?.code
+									)[0]?.obj?.logo
+								}
+							/>{" "}
+							{item?.bank?.name} - {item?.accountNumber}
+						</div>
+					),
+					obj: {
+						accountNumber: item?.accountNumber,
+						accountName: item?.accountName,
+						bank: {
+							name: item?.bank?.name,
+							code: item?.bank?.code,
+							logo: bankOptions?.filter(
+								(bankObj: any) => bankObj?.obj?.code === item?.bank?.code
+							)[0]?.obj?.logo,
+						},
+					},
+				}))
+			);
+		}
+	}, [userLoading]);
+
+	console.log("accountName", accountName);
 
 	return (
 		<section className={styles.ExchangeCard}>
@@ -564,28 +599,94 @@ export const ExchangeCard = () => {
 							</div>
 							<div>
 								<Label>
-									<AssetSelect
-										options={bankOptions}
-										onChange={(e: any) => {
-											setBankObj(e.value);
+									<p
+										style={{
+											color: "#ffffff",
+											fontSize: "16px",
+											marginBottom: "0.5rem",
 										}}
-										defaultValue={bankOptions[0]}
+									>
+										Select bank account
+									</p>
+									<AssetSelect
+										options={accountOptions}
+										value={{
+											value: bankObj?.name,
+											label: (
+												<div className={styles.cryptoOption}>
+													<img
+														src={
+															bankOptions?.filter(
+																(item: any) => item?.obj?.code === bankObj?.code
+															)[0]?.obj?.logo
+														}
+													/>{" "}
+													{bankObj?.name} - {accountNumber}
+												</div>
+											),
+											obj: {
+												accountNumber: accountNumber,
+												accountName: accountName,
+												bank: {
+													name: bankObj?.name,
+													code: bankObj?.code,
+												},
+											},
+										}}
+										onChange={(e: any) => {
+											console.log("weeee", e);
+
+											setBankObj(e.obj.bank);
+											// setReload(true);
+											setTimeout(() => {
+												setAccountNumber(e.obj.accountNumber);
+												// setReload(false);
+											}, 500);
+										}}
+										// defaultValue={accountOptions[0]}
 									/>
 								</Label>
-								<Input
-									value={accountNumber}
-									sidePiece={accountName || "-"}
-									onChange={(e) => setAccountNumber(e.target.value)}
-									loading={accountNameLoading}
-								/>
 							</div>
+							{reload ? (
+								<SpinnerComponent />
+							) : (
+								<div>
+									<Label>
+										<AssetSelect
+											options={bankOptions}
+											onChange={(e: any) => {
+												setBankObj(e.obj);
+											}}
+											value={{
+												value: bankObj.name,
+												label: (
+													<div className={styles.cryptoOption}>
+														<img src={bankObj.logo} /> {bankObj.name}
+													</div>
+												),
+												obj: {
+													name: bankObj.name,
+													code: bankObj.code,
+													logo: bankObj.logo,
+												},
+											}}
+										/>
+									</Label>
+									<Input
+										value={accountNumber}
+										sidePiece={accountName || "-"}
+										onChange={(e) => setAccountNumber(e.target.value)}
+										loading={accountNameLoading}
+									/>
+								</div>
+							)}
 							<div>
-								<WalletDropdown
+								{/* <WalletDropdown
 									label="receipient address"
 									selectedWallet="0xdaf5b8D1c9c1dA1311"
 									setSelectedWallet={() => {}}
 									list={["0x8984fglad456yre466", "0xdaf5b8D1c9c1dA1311"]}
-								/>
+								/> */}
 							</div>
 							<div className={styles.warning}>
 								<RiErrorWarningLine />

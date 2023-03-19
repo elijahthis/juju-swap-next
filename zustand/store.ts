@@ -8,8 +8,14 @@ export const useJujuStore = create((set: any) => ({
 	updateUserData: (values: any) =>
 		set((state: any) => ({ userData: { ...state.userData, ...values } })),
 
+	//this reloads the getUser query
 	userFunc: () => {},
 	updateUserFunc: (value: any) => set((state: any) => ({ userFunc: value })),
+
+	//this keeps track of the loading state of the getUser query
+	userLoading: false,
+	updateUserLoading: (value: boolean) =>
+		set((state: any) => ({ userLoading: value })),
 
 	userID: "",
 	updateUserID: (value: any) => set((state: any) => ({ userID: value })),

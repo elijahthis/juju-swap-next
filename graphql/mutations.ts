@@ -89,3 +89,15 @@ export const ADD_ACCOUNT_DETAILS = gql`
 		}
 	}
 `;
+
+export const SET_USER_MAIN_ACCOUNT = gql`
+	mutation Mutation($userId: String!, $accountId: String!) {
+		setUserMainAccount(userId: $userId, accountId: $accountId) {
+			... on AccountDetails {
+				accountName
+				accountNumber
+				default
+			}
+		}
+	}
+`;

@@ -11,6 +11,9 @@ const GeneralRequests = () => {
 	const userData = useJujuStore((state: any) => state.userData);
 	const updateUserData = useJujuStore((state: any) => state.updateUserData);
 	const updateUserFunc = useJujuStore((state: any) => state.updateUserFunc);
+	const updateUserLoading = useJujuStore(
+		(state: any) => state.updateUserLoading
+	);
 	const userID = useJujuStore((state: any) => state.userID);
 	const updateUserID = useJujuStore((state: any) => state.updateUserID);
 	const updateBankList = useJujuStore((state: any) => state.updateBankList);
@@ -61,6 +64,7 @@ const GeneralRequests = () => {
 	}, [userIdLoading]);
 
 	useEffect(() => {
+		updateUserLoading(userObjLoading);
 		if (!userObjLoading && !userObjError) updateUserData(userObj?.getUser);
 	}, [userObjLoading]);
 

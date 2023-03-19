@@ -1,15 +1,13 @@
 import { Switch } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 interface MUIToggleProps {
 	value: boolean;
-	setValue: Dispatch<SetStateAction<boolean>>;
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const MUIToggle = ({ value, setValue }: MUIToggleProps) => {
-	return (
-		<Switch checked={value} onChange={(e) => setValue(e.target.checked)} />
-	);
+const MUIToggle = ({ value, onChange }: MUIToggleProps) => {
+	return <Switch checked={value} onChange={onChange} />;
 };
 
 export default MUIToggle;
