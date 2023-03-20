@@ -9,6 +9,7 @@ const GeneralRequests = () => {
 	// zustand global states
 	const bankList = useJujuStore((state: any) => state.bankList);
 	const userData = useJujuStore((state: any) => state.userData);
+	const userSigned = useJujuStore((state: any) => state.userSigned);
 	const updateUserData = useJujuStore((state: any) => state.updateUserData);
 	const updateUserFunc = useJujuStore((state: any) => state.updateUserFunc);
 	const updateUserLoading = useJujuStore(
@@ -68,7 +69,8 @@ const GeneralRequests = () => {
 		if (!userObjLoading && !userObjError) updateUserData(userObj?.getUser);
 	}, [userObjLoading]);
 
-	console.log("userData", userData);
+	console.log("userID", userID);
+	console.log("userSigned", userSigned);
 
 	return <span></span>;
 };

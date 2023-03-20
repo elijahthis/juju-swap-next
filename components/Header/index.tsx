@@ -25,6 +25,7 @@ const Header = () => {
 	const [toggleOpen, setToggleOpen] = useState(false);
 
 	const userData = useJujuStore((state: any) => state.userData);
+	const userID = useJujuStore((state: any) => state.userID);
 	const updateUserData = useJujuStore((state: any) => state.updateUserData);
 	const userSigned = useJujuStore((state: any) => state.userSigned);
 	const updateUserSigned = useJujuStore((state: any) => state.updateUserSigned);
@@ -98,6 +99,7 @@ const Header = () => {
 			Ref: https://github.com/rainbow-me/rainbowkit/issues/686#issuecomment-1295798813
 			*/
 			// if (!address)
+
 			disconnect().then(() => {
 				updateRainbowKey(new Date().getTime());
 			});
@@ -106,15 +108,18 @@ const Header = () => {
 	});
 
 	useEffect(() => {
-		if (address && !messageLoading && !messageError) {
+		updateUserSigned(false);
+		if (address && !messageLoading && !messageError && userID === undefined) {
 			console.log("address", address);
 			console.log("message", message);
 			//comment this out when testing
 			signMessage();
 		}
+		if (address && !messageLoading && !messageError && userID)
+			updateUserSigned(true);
 
 		if (!address) updateUserSigned(false);
-	}, [address, messageLoading]);
+	}, [address, messageLoading, userID]);
 
 	const routesList = [
 		{ name: "Home", route: "/" },
