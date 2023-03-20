@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 interface ButtonProps {
 	children: JSX.Element | string;
-	variant: "primary" | "secondary";
+	variant: "primary" | "secondary" | "delete";
 	type?: "button" | "submit" | "reset" | undefined;
 	onClick?: () => void;
 	disabled?: boolean;
@@ -26,8 +26,8 @@ const Button = ({
 			onClick={() => {
 				if (!loading && !disabled) onClick();
 			}}
-			whileHover={{ scale: 1.04 }}
-			whileTap={{ scale: 0.9 }}
+			whileHover={{ scale: disabled ? 1 : 1.04 }}
+			whileTap={{ scale: disabled ? 1 : 0.9 }}
 			transition={{ type: "spring" }}
 		>
 			{loading ? <Spinner w={15} h={15} color="#ffffff" /> : children}

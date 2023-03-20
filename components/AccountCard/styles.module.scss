@@ -25,6 +25,23 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-end;
-		gap: 1rem;
+		gap: 0.2rem;
+
+		svg {
+			cursor: pointer;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.AccountCard {
+		& > :last-child {
+			div {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-end;
+				gap: 0;
+			}
+		}
 	}
 }

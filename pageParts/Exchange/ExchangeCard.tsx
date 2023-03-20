@@ -157,6 +157,7 @@ export const ExchangeCard = () => {
 			setAccountName(res?.data?.data?.account_name);
 		} catch (e) {
 			console.log(e);
+			toast.error((e as any)?.response?.data?.message);
 			setAccountName("");
 		} finally {
 			setAccountNameLoading(false);

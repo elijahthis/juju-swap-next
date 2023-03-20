@@ -10,6 +10,10 @@
 	border-radius: 6px;
 	border: 0;
 	cursor: pointer;
+
+	&--delete {
+		background: #c70000;
+	}
 }
 
 @media screen and (max-width: 1024px) {

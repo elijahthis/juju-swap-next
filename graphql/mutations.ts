@@ -101,3 +101,23 @@ export const SET_USER_MAIN_ACCOUNT = gql`
 		}
 	}
 `;
+
+export const DELETE_ACCOUNT_DETAILS = gql`
+	mutation DeleteAccountDetails(
+		$userId: String!
+		$accountNumber: String!
+		$accountName: String
+	) {
+		deleteAccountDetails(
+			userId: $userId
+			accountNumber: $accountNumber
+			accountName: $accountName
+		) {
+			... on AccountDetails {
+				accountName
+				accountNumber
+				id
+			}
+		}
+	}
+`;

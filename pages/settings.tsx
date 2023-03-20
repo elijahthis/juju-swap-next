@@ -32,12 +32,13 @@ const Settings = () => {
 
 	// populates the bank dropdown
 	const bankOptions = bankList?.map((item: any) => ({
-		value: { name: item?.name, code: item?.code },
+		value: item?.name,
 		label: (
 			<div className={styles.cryptoOption}>
 				<img src={item?.logo} /> {item?.name}
 			</div>
 		),
+		obj: { name: item?.name, code: item?.code, logo: item?.logo },
 	}));
 
 	const fetchAccountName = async () => {
@@ -48,6 +49,7 @@ const Settings = () => {
 			setAccountName(res?.data?.data?.account_name);
 		} catch (e) {
 			console.log(e);
+			toast.error((e as any)?.response?.data?.message);
 			setAccountName("");
 		} finally {
 			setAccountNameLoading(false);
@@ -126,7 +128,7 @@ const Settings = () => {
 								<AssetSelect
 									options={bankOptions}
 									onChange={(e: any) => {
-										setBankObj(e.value);
+										setBankObj(e.obj);
 									}}
 									// value={bankOptions[0]}
 									defaultValue={bankOptions[0]}
@@ -139,7 +141,21 @@ const Settings = () => {
 								loading={accountNameLoading}
 							/>
 						</div>
-						<Button variant="primary" type="submit" loading={addDetailsLoading}>
+						<Button
+							variant="primary"
+							type="submit"
+							loading={addDetailsLoading}
+							disabled={
+								!(
+									!accountNameLoading &&
+									userID &&
+									bankObj.name &&
+									bankObj.code &&
+									accountNumber &&
+									accountName
+								)
+							}
+						>
 							Add Account
 						</Button>
 					</form>
