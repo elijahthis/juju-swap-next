@@ -161,6 +161,7 @@ const Settings = () => {
 										bank: item?.bank?.name,
 										default: item?.default,
 									}}
+									key={item?.id}
 								/>
 							))
 						) : (
