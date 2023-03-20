@@ -93,7 +93,7 @@ const AccountCard = ({ accountData }: AccountCardProps) => {
 			<MUIModal open={openDelete} handleClose={() => setOpenDelete(false)}>
 				<DeleteModal
 					title="Delete Bank Details"
-					name={accountData.accountName}
+					name={`${accountData.accountName} - ${accountData.bank}`}
 					deleteFunc={() =>
 						deleteAccountMutation({
 							variables: {

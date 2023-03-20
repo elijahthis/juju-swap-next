@@ -106,13 +106,19 @@ const Settings = () => {
 									},
 									onCompleted(data) {
 										console.log("acctData", data);
-										toast.success("Account Details Updated");
+										console.log("accterror", error);
 
-										//reset values
-										setAccountName("");
-										setAccountNumber("");
-										setBankObj({ name: "", code: "" });
-										userFunc();
+										if (data?.addAccountDetails?.__typename === "Error")
+											toast.error(data?.addAccountDetails?.message);
+										else {
+											toast.success("Account Details Updated");
+
+											//reset values
+											setAccountName("");
+											setAccountNumber("");
+											// setBankObj({ name: "", code: "" });
+											userFunc();
+										}
 									},
 									onError(error) {
 										console.log(error);

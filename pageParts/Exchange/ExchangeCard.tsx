@@ -80,6 +80,7 @@ export const ExchangeCard = () => {
 		variables: { chainId: chain?.id },
 	});
 
+	console.log("chain?.id", chain?.id);
 	console.log("chainTokens", chainTokens);
 
 	const {
