@@ -21,7 +21,9 @@ const Button = ({
 }: ButtonProps) => {
 	return (
 		<motion.button
-			className={`${styles.Button} ${styles[`Button--${variant}`]}`}
+			className={`${styles.Button} ${styles[`Button--${variant}`]} ${
+				disabled && styles[`Button--disabled`]
+			}`}
 			type={type}
 			onClick={() => {
 				if (!loading && !disabled) onClick();
@@ -29,6 +31,7 @@ const Button = ({
 			whileHover={{ scale: disabled ? 1 : 1.04 }}
 			whileTap={{ scale: disabled ? 1 : 0.9 }}
 			transition={{ type: "spring" }}
+			disabled={disabled}
 		>
 			{loading ? <Spinner w={15} h={15} color="#ffffff" /> : children}
 		</motion.button>

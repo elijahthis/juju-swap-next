@@ -14,6 +14,12 @@
 	&--delete {
 		background: #c70000;
 	}
+
+	&--disabled {
+		background: #f0f0f0;
+		color: #999999;
+		cursor: not-allowed;
+	}
 }
 
 @media screen and (max-width: 1024px) {

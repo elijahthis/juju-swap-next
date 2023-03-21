@@ -8,9 +8,12 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import styles from "./styles.module.scss";
 import UploadImage from "@/components/UploadImage";
+import { ADD_KYC_DETAILS, UPDATE_KYC_DETAILS } from "@/graphql/mutations";
+import { useMutation } from "@apollo/client";
 
 const KYC = () => {
 	const userID = useJujuStore((state: any) => state.userID);
+	const userData = useJujuStore((state: any) => state.userData);
 
 	const [formData, setFormData] = useState({
 		identificationFirstName: "",
@@ -52,6 +55,16 @@ const KYC = () => {
 		},
 	];
 
+	const [
+		addKycMutation,
+		{ data: addKycData, loading: addKycLoading, error: addKycError },
+	] = useMutation(ADD_KYC_DETAILS);
+
+	const [
+		updateKycMutation,
+		{ data: updateKycData, loading: updateKycLoading, error: updateKycError },
+	] = useMutation(UPDATE_KYC_DETAILS);
+
 	return (
 		<div className={styles.KYC}>
 			<h4>KYC</h4>
@@ -59,55 +72,42 @@ const KYC = () => {
 				<form
 					action=""
 					className={styles.KYC__innerForm}
-					// onSubmit={(e) => {
-					// 	e.preventDefault();
-					// 	if (
-					// 		!accountNameLoading &&
-					// 		userID &&
-					// 		bankObj.name &&
-					// 		bankObj.code &&
-					// 		accountNumber &&
-					// 		accountName
-					// 	) {
-					// 		console.log({
-					// 			userId: userID?.id,
-					// 			accountNumber: accountNumber,
-					// 			accountName: accountName,
-					// 			bankName: bankObj.name,
-					// 			bankCode: bankObj.code,
-					// 		});
+					onSubmit={(e) => {
+						e.preventDefault();
+						if (!Object.values(formData).includes("")) {
+							console.log("formData", formData);
 
-					// 		addAcctDetailsMutation({
-					// 			variables: {
-					// 				userId: userID,
-					// 				accountNumber: accountNumber,
-					// 				accountName: accountName,
-					// 				bankName: bankObj.name,
-					// 				bankCode: bankObj.code,
-					// 			},
-					// 			onCompleted(data) {
-					// 				console.log("acctData", data);
-					// 				console.log("accterror", error);
+							// addAcctDetailsMutation({
+							// 	variables: {
+							// 		userId: userID,
+							// 		accountNumber: accountNumber,
+							// 		accountName: accountName,
+							// 		bankName: bankObj.name,
+							// 		bankCode: bankObj.code,
+							// 	},
+							// 	onCompleted(data) {
+							// 		console.log("acctData", data);
+							// 		console.log("accterror", error);
 
-					// 				if (data?.addAccountDetails?.__typename === "Error")
-					// 					toast.error(data?.addAccountDetails?.message);
-					// 				else {
-					// 					toast.success("Account Details Updated");
+							// 		if (data?.addAccountDetails?.__typename === "Error")
+							// 			toast.error(data?.addAccountDetails?.message);
+							// 		else {
+							// 			toast.success("Account Details Updated");
 
-					// 					//reset values
-					// 					setAccountName("");
-					// 					setAccountNumber("");
-					// 					// setBankObj({ name: "", code: "" });
-					// 					userFunc();
-					// 				}
-					// 			},
-					// 			onError(error) {
-					// 				console.log(error);
-					// 				toast.error(error.message);
-					// 			},
-					// 		});
-					// 	}
-					// }}
+							// 			//reset values
+							// 			setAccountName("");
+							// 			setAccountNumber("");
+							// 			// setBankObj({ name: "", code: "" });
+							// 			userFunc();
+							// 		}
+							// 	},
+							// 	onError(error) {
+							// 		console.log(error);
+							// 		toast.error(error.message);
+							// 	},
+							// });
+						}
+					}}
 				>
 					<h4>Update KYC</h4>
 					<div className={styles.doubleDiv}>
@@ -167,23 +167,18 @@ const KYC = () => {
 					<div>
 						<Label>
 							<p className={styles.whiteLbl}>Identification Image</p>
-							<UploadImage onFileSelect={(file) => {}} />
+							<UploadImage
+								onFileSelect={(file) => {
+									updateFormData("identificationImage", file.name);
+								}}
+							/>
 						</Label>
 					</div>
 					<Button
 						variant="primary"
 						type="submit"
 						// loading={addDetailsLoading}
-						// disabled={
-						// 	!(
-						// 		!accountNameLoading &&
-						// 		userID &&
-						// 		bankObj.name &&
-						// 		bankObj.code &&
-						// 		accountNumber &&
-						// 		accountName
-						// 	)
-						// }
+						disabled={Object.values(formData).includes("")}
 					>
 						Add Account
 					</Button>

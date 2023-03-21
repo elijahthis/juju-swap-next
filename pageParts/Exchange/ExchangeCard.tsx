@@ -705,6 +705,15 @@ export const ExchangeCard = () => {
 									redeemQuoteLoading ||
 									redeemTxLoading
 								}
+								disabled={
+									!(
+										address &&
+										assetObj.address &&
+										assetAmount &&
+										chain?.id &&
+										accountName
+									)
+								}
 							>
 								Sell
 							</Button>
