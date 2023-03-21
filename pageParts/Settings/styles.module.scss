@@ -1,0 +1,92 @@
+.BankAccounts {
+	.Account__innerForm {
+		padding: 76px 96px;
+		color: #8e8e93;
+
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 26px;
+
+		h4 {
+			color: #ffffff;
+		}
+
+		& > div {
+			width: 100%;
+		}
+	}
+
+	.cryptoOption {
+		display: grid;
+		grid-template-columns: 18px 1fr;
+		align-items: center;
+		gap: 0.5rem;
+
+		img {
+			height: 18px;
+			width: 18px;
+			border-radius: 50%;
+		}
+	}
+
+	.accounts {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+		gap: 1rem;
+		margin: 2rem 0;
+	}
+}
+
+.KYC {
+	&__innerForm {
+		padding: 76px 96px;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 1.5rem;
+
+		h4 {
+			color: #ffffff;
+		}
+
+		.doubleDiv {
+			width: 100%;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 2rem;
+		}
+
+		.whiteLbl {
+			color: #ffffff;
+			font-size: 1rem;
+		}
+
+		.cryptoOption {
+			p {
+				color: #ffffff;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.BankAccounts {
+		.Account__innerForm {
+			padding: 1.5rem 1rem;
+		}
+
+		.accounts {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 1rem;
+			margin: 2rem 0;
+		}
+	}
+
+	.KYC {
+		&__innerForm {
+			padding: 1.5rem 1rem;
+		}
+	}
+}

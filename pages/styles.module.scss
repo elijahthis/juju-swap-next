@@ -30,52 +30,15 @@
 }
 
 .Settings {
-	padding: 32px 10.42vw;
-
 	h3 {
 		margin-bottom: 1.5rem;
 	}
 
-	&__block {
+	&__body {
+		padding: 32px 10.42vw;
 	}
 
-	.Account__innerForm {
-		padding: 76px 96px;
-		color: #8e8e93;
-
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-		gap: 26px;
-
-		h4 {
-			color: #ffffff;
-		}
-
-		& > div {
-			width: 100%;
-		}
-	}
-
-	.cryptoOption {
-		display: grid;
-		grid-template-columns: 18px 1fr;
-		align-items: center;
-		gap: 0.5rem;
-
-		img {
-			height: 18px;
-			width: 18px;
-			border-radius: 50%;
-		}
-	}
-
-	.accounts {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-		gap: 1rem;
-		margin: 2rem 0;
-	}
+	
 }
 
 @media screen and (max-width: 1024px) {
@@ -90,7 +53,10 @@
 	}
 
 	.Settings {
-		padding: 2rem 1rem;
+		&__body {
+			padding: 2rem 1rem;
+		}
+
 		.Account__innerForm {
 			padding: 1.5rem 1rem;
 		}

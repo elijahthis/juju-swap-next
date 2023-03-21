@@ -121,3 +121,66 @@ export const DELETE_ACCOUNT_DETAILS = gql`
 		}
 	}
 `;
+
+export const ADD_KYC_DETAILS = gql`
+	mutation AddKYC(
+		$userId: String!
+		$identificationFirstName: String!
+		$identificationMiddleName: String!
+		$identificationLastName: String!
+		$identificationType: IdentificationType!
+		$identificationNumber: String!
+		$identificationImage: String!
+	) {
+		addKYC(
+			userId: $userId
+			identificationFirstName: $identificationFirstName
+			identificationMiddleName: $identificationMiddleName
+			identificationLastName: $identificationLastName
+			identificationType: $identificationType
+			identificationNumber: $identificationNumber
+			identificationImage: $identificationImage
+		) {
+			... on KYC {
+				createdAt
+				id
+				identificationFirstName
+				identificationLastName
+				identificationImage
+				identificationMiddleName
+				identificationType
+				identificationNumber
+				status
+				updatedAt
+			}
+		}
+	}
+`;
+
+export const UPDATE_KYC_DETAILS = gql`
+	mutation UpdateKYC(
+		$userId: String!
+		$identificationImage: String = null
+		$identificationType: IdentificationType = null
+		$identificationLastName: String = null
+		$identificationNumber: String = null
+		$identificationFirstName: String = null
+		$identificationMiddleName: String = null
+	) {
+		updateKYC(
+			userId: $userId
+			identificationImage: $identificationImage
+			identificationType: $identificationType
+			identificationLastName: $identificationLastName
+			identificationNumber: $identificationNumber
+			identificationFirstName: $identificationFirstName
+			identificationMiddleName: $identificationMiddleName
+		) {
+			... on User {
+				eoa
+				id
+				reference
+			}
+		}
+	}
+`;
