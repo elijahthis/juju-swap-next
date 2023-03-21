@@ -70,6 +70,7 @@ const GeneralRequests = () => {
 	}, [userObjLoading]);
 
 	console.log("userID", userID);
+	console.log("userData", userData);
 	console.log("userSigned", userSigned);
 
 	return <span></span>;

@@ -10,10 +10,12 @@ import styles from "./styles.module.scss";
 import UploadImage from "@/components/UploadImage";
 import { ADD_KYC_DETAILS, UPDATE_KYC_DETAILS } from "@/graphql/mutations";
 import { useMutation } from "@apollo/client";
+import { toast } from "react-toastify";
 
 const KYC = () => {
 	const userID = useJujuStore((state: any) => state.userID);
 	const userData = useJujuStore((state: any) => state.userData);
+	const userFunc = useJujuStore((state: any) => state.userFunc);
 
 	const [formData, setFormData] = useState({
 		identificationFirstName: "",
@@ -77,35 +79,50 @@ const KYC = () => {
 						if (!Object.values(formData).includes("")) {
 							console.log("formData", formData);
 
-							// addAcctDetailsMutation({
-							// 	variables: {
-							// 		userId: userID,
-							// 		accountNumber: accountNumber,
-							// 		accountName: accountName,
-							// 		bankName: bankObj.name,
-							// 		bankCode: bankObj.code,
-							// 	},
-							// 	onCompleted(data) {
-							// 		console.log("acctData", data);
-							// 		console.log("accterror", error);
+							if (userData?.kyc === null)
+								addKycMutation({
+									variables: {
+										userId: userID,
+										...formData,
+									},
+									onCompleted(data) {
+										console.log("kycdata", data);
 
-							// 		if (data?.addAccountDetails?.__typename === "Error")
-							// 			toast.error(data?.addAccountDetails?.message);
-							// 		else {
-							// 			toast.success("Account Details Updated");
+										if (data?.addKYC?.__typename === "Error")
+											toast.error(data?.addKYC?.message);
+										else {
+											toast.success("KYC Details Added");
 
-							// 			//reset values
-							// 			setAccountName("");
-							// 			setAccountNumber("");
-							// 			// setBankObj({ name: "", code: "" });
-							// 			userFunc();
-							// 		}
-							// 	},
-							// 	onError(error) {
-							// 		console.log(error);
-							// 		toast.error(error.message);
-							// 	},
-							// });
+											userFunc();
+										}
+									},
+									onError(error) {
+										console.log(error);
+										toast.error(error.message);
+									},
+								});
+							else
+								updateKycMutation({
+									variables: {
+										userId: userID,
+										...formData,
+									},
+									onCompleted(data) {
+										console.log("kycdata", data);
+
+										if (data?.updateKYC?.__typename === "Error")
+											toast.error(data?.updateKYC?.message);
+										else {
+											toast.success("KYC Details Updated");
+
+											userFunc();
+										}
+									},
+									onError(error) {
+										console.log(error);
+										toast.error(error.message);
+									},
+								});
 						}
 					}}
 				>
@@ -169,7 +186,7 @@ const KYC = () => {
 							<p className={styles.whiteLbl}>Identification Image</p>
 							<UploadImage
 								onFileSelect={(file) => {
-									updateFormData("identificationImage", file.name);
+									// updateFormData("identificationImage", file.name);
 								}}
 							/>
 						</Label>
@@ -180,7 +197,7 @@ const KYC = () => {
 						// loading={addDetailsLoading}
 						disabled={Object.values(formData).includes("")}
 					>
-						Add Account
+						{userData?.kyc === null ? "Add Details" : "Update Details"}
 					</Button>
 				</form>
 			</BlackCard>
