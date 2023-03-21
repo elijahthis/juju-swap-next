@@ -167,7 +167,7 @@ const KYC = () => {
 					<div>
 						<Label>
 							<p className={styles.whiteLbl}>Identification Image</p>
-							<UploadImage />
+							<UploadImage onFileSelect={(file) => {}} />
 						</Label>
 					</div>
 					<Button
